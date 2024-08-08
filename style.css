@@ -1,48 +1,63 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   display: flex;
   place-items: center;
   flex-direction: column;
 
 }
 
-.tile{
+.tile {
   border: 1px solid black;
   aspect-ratio: 1/1;
   font-size: 200%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: 0.4s ease;
+  justify-content: center; 
+  transition: 0.1s ease;
 }
 
+.tile:hover {
+  background-color: lightblue;
+}
 
-
-
-.tile-layout{
+.tile-layout {
   display: grid;
   width: 500px;
   border: 5px solid black;
   border-radius: 10px;
 }
 
-p{
-  cursor: pointer;
-  &:hover{
-    background-color: lightblue;
-    transition: 0.2s ease;
-  }
+p {
+  height: 100%;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+  opacity: 1;
 }
 
-.mine{
+.mine {
   background-color: black;
 }
 
-.active{
+.active {
   background-color: gray;
+}
+
+.fade-in {
+  animation: 0.5s ease fade-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

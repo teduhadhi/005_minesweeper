@@ -1,5 +1,5 @@
 const level = [
-  [9,   9,  81] , // [rows, columns, mines]
+  [9,   9,  10] , // [rows, columns, mines]
   [9,   9,  20] ,
   [16,  9,  50]
 ]
@@ -31,11 +31,14 @@ const gridLayout = (level) => {
     for(let j = 0; j < cols; j++){
       
     let tile = document.createElement("p");
+    let box = document.createElement("div");
 
     tile.onclick = tileClick;
     tile.setAttribute("id", `tile-${j}-${i}`);
-    tile.classList.add("tile");
-    tileLayout.appendChild(tile);
+    box.classList.add("tile");
+
+    box.appendChild(tile)
+    tileLayout.appendChild(box);
     }
   }
 }
@@ -44,12 +47,12 @@ const gridLayout = (level) => {
 
 const mineSpreader = (level) => {
   let mines = level[2]
-    let tilesArray = document.querySelectorAll(".tile");
+    let tilesArray = document.querySelectorAll("p");
 
     do{
       let tile = tilesArray[Math.floor(Math.random() * tilesArray.length)]
       if(!tile.innerText){
-        tile.innerText ="💣"
+        
         tile.setAttribute("data-status", "marked")
         mines--;
       }
@@ -72,6 +75,7 @@ const flagFeature = () => {
 
 const tileClick = (event) => {
   let tile = event.target;
+  console.log(tile)
 
   if (flag) {
     if(tile.innerText != "🚩"){
@@ -83,13 +87,12 @@ const tileClick = (event) => {
 
   if (!flag && tile.dataset.status){
     displayMine();
-    // alert("duar")
   }
 }
 
 
 const gridReset = () => {
-  const grid = document.querySelectorAll("p")
+  const grid = document.querySelectorAll(".tile")
   grid.forEach(item => {
     item.remove();
   })  
@@ -97,14 +100,14 @@ const gridReset = () => {
 
 const displayMine = () => {
   const tile = document.querySelectorAll("[data-status]")
+
   for (let i = 0; i < tile.length; i++){
-      
+      tile[i].style.setProperty("opacity", "0")
+      tile[i].innerText ="💣"
 
       setTimeout(() => {
-        // tile[i].innerText ="💣"
-        tile[i].style.setProperty("background-color", "black")
-        // tile[i].innerText ="💣"
-      }, (Math.random())*2000 );
+        tile[i].classList.add("fade-in")
+      }, (Math.random())*1300 );
   }
 }
    
