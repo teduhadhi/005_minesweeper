@@ -8,7 +8,7 @@ body{
   display: flex;
   place-items: center;
   flex-direction: column;
-  transition: 0.5s ease;
+
 }
 
 .tile{
@@ -18,8 +18,11 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-
+  transition: 0.4s ease;
 }
+
+
+
 
 .tile-layout{
   display: grid;
@@ -30,4 +33,16 @@ body{
 
 p{
   cursor: pointer;
+  &:hover{
+    background-color: lightblue;
+    transition: 0.2s ease;
+  }
+}
+
+.mine{
+  background-color: black;
+}
+
+.active{
+  background-color: gray;
 }
