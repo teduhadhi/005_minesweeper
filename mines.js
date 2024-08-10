@@ -1,9 +1,7 @@
 
 
-const mineSpreader = (level) => {
+export const mineSpreader = (level, tilesArray) => {
   let mines = level[2]
-    let tilesArray = document.querySelectorAll("p");
-
     do{
       let tile = tilesArray[Math.floor(Math.random() * tilesArray.length)]
       if(!tile.innerText){
@@ -14,16 +12,14 @@ const mineSpreader = (level) => {
     } while(mines > 0)
 }
 
-// const displayMine = () => {
-//   const mine = document.querySelectorAll("[data-status]")
+export const displayMine = (markedTiles) => {
+  for (let i = 0; i < markedTiles.length; i++){
+      markedTiles[i].style.setProperty("opacity", "0")
+      markedTiles[i].innerText ="💣"
 
-//   for (let i = 0; i < mine.length; i++){
-//       mine[i].style.setProperty("opacity", "0")
-//       mine[i].innerText ="💣"
-
-//       setTimeout(() => {
-//         mine[i].classList.add("fade-in")
-//       }, (Math.random())*1300 );
-//   }
-// }
+      setTimeout(() => {
+        markedTiles[i].classList.add("fade-in")
+      }, (Math.random())*1300 );
+  }
+}
 

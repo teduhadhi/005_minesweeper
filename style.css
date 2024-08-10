@@ -48,9 +48,17 @@ p {
   background-color: gray;
 }
 
+.checked{
+  background-color: gray;
+}
+
 .fade-in {
   animation: 0.5s ease fade-in;
   animation-fill-mode: forwards;
+}
+
+.test{
+  color: black;
 }
 
 @keyframes fade-in {
