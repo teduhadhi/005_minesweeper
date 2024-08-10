@@ -89,35 +89,36 @@ const tileClick = (event) => {
 
   if (!flag && tile.dataset.status){
     displayMine();
+    alert("refresh")
   } else {
-    tileCheck();
+    // tileCheck();
   }
 }
 
 // recursion tile check
 
-const tileCheck = () => {
-  let mineCounter = 0;
-  mineCounter += mineCheck(row - 1, col - 1, level)
-  
-}
+// const tileCheck = () => {
+//   let mineCounter = 0;
+//   mineCounter += mineCheck(row - 1, col - 1, level)
 
-const mineCheck = (row, col, level) => {
-  const gridRow = level[0];
-  const gridCol = level[1];
+// }
+
+// const mineCheck = (row, col, level) => {
+//   const gridRow = level[0];
+//   const gridCol = level[1];
   
-  let tile = document.querySelector(`#tile-${row}-${col}`);
+//   let tile = document.querySelector(`#tile-${row}-${col}`);
   
-  if (row > gridRow || col > gridCol || row < 0 || col < gridCol){
-    return 0;
-  }
-  if (tile.dataset.status = "marked"){
-    return 1;
-  }
-  return 0;
+//   if (row > gridRow || col > gridCol || row < 0 || col < gridCol){
+//     return 0;
+//   }
+//   if (tile.dataset.status = "marked"){
+//     return 1;
+//   }
+//   return 0;
   
-  // return 0;
-}
+//   // return 0;
+// }
 
 const gridReset = () => {
   const grid = document.querySelectorAll(".tile")
@@ -143,18 +144,18 @@ gridLayout(level[0]);
 
 flagButton.onclick = flagFeature
 
-const loadAnimation = (level) => {
-  const tile = document.querySelectorAll(".tile")
- console.log(tile)
+// const loadAnimation = (level) => {
+//   const tile = document.querySelectorAll(".tile")
+//  console.log(tile)
 
-  // for (let i = 0; i < row; i++){
+//   // for (let i = 0; i < row; i++){
 
-  // }
-}
+//   // }
+// }
 
 
 
-loadAnimation()
+// loadAnimation()
 
 
 
