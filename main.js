@@ -15,7 +15,7 @@ levelButton.forEach(function(item, index) {
     gridLayout(level[index]);
     mineSpreader(level[index])
   }
-  })
+})
 
 
 const gridLayout = (level) => {
@@ -35,6 +35,7 @@ const gridLayout = (level) => {
 
     tile.onclick = tileClick;
     tile.setAttribute("id", `tile-${j}-${i}`);
+    
     box.classList.add("tile");
 
     box.appendChild(tile)
@@ -54,6 +55,7 @@ const mineSpreader = (level) => {
       if(!tile.innerText){
         
         tile.setAttribute("data-status", "marked")
+        tile.innerText ="💣"
         mines--;
       }
     } while(mines > 0)
@@ -87,9 +89,35 @@ const tileClick = (event) => {
 
   if (!flag && tile.dataset.status){
     displayMine();
+  } else {
+    tileCheck();
   }
 }
 
+// recursion tile check
+
+const tileCheck = () => {
+  let mineCounter = 0;
+  mineCounter += mineCheck(row - 1, col - 1, level)
+  
+}
+
+const mineCheck = (row, col, level) => {
+  const gridRow = level[0];
+  const gridCol = level[1];
+  
+  let tile = document.querySelector(`#tile-${row}-${col}`);
+  
+  if (row > gridRow || col > gridCol || row < 0 || col < gridCol){
+    return 0;
+  }
+  if (tile.dataset.status = "marked"){
+    return 1;
+  }
+  return 0;
+  
+  // return 0;
+}
 
 const gridReset = () => {
   const grid = document.querySelectorAll(".tile")
@@ -99,14 +127,14 @@ const gridReset = () => {
 }
 
 const displayMine = () => {
-  const tile = document.querySelectorAll("[data-status]")
+  const mine = document.querySelectorAll("[data-status]")
 
-  for (let i = 0; i < tile.length; i++){
-      tile[i].style.setProperty("opacity", "0")
-      tile[i].innerText ="💣"
+  for (let i = 0; i < mine.length; i++){
+      mine[i].style.setProperty("opacity", "0")
+      mine[i].innerText ="💣"
 
       setTimeout(() => {
-        tile[i].classList.add("fade-in")
+        mine[i].classList.add("fade-in")
       }, (Math.random())*1300 );
   }
 }
@@ -114,6 +142,19 @@ const displayMine = () => {
 gridLayout(level[0]);
 
 flagButton.onclick = flagFeature
+
+const loadAnimation = (level) => {
+  const tile = document.querySelectorAll(".tile")
+ console.log(tile)
+
+  // for (let i = 0; i < row; i++){
+
+  // }
+}
+
+
+
+loadAnimation()
 
 
 
