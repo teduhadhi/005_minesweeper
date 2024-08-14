@@ -1,5 +1,5 @@
 const checkTile = (() =>{
-  const checkMine = (minesArray: string[], target: HTMLDivElement, configIndex: number[]) => {
+  const checkMine = (minesArray: string[], target: HTMLDivElement, configIndex: number[]) : boolean => {
     const gridRow: number = configIndex[0];
     const gridCol: number = configIndex[1];
 
@@ -10,8 +10,7 @@ const checkTile = (() =>{
     let mineCount: number = 0
 
     if(minesArray.includes(target.id)) {
-      alert('duar')
-      console.log(configIndex)
+      return true;
     }
 
     for (let rowIndex = -1; rowIndex <= 1; rowIndex++){
@@ -19,19 +18,25 @@ const checkTile = (() =>{
         mineCount += checkMineNumber(row + rowIndex, col + colIndex, gridRow, gridCol, minesArray);
       }
     }
+
+    if (mineCount > 0) {
+    target.innerHTML = mineCount.toString();
+    return true;
+    } else {
+      // else target.classList.add("gray")
+      return false
+    }
+
     
-    if (mineCount > 0) target.innerHTML = mineCount.toString()
   }
 
   const checkMineNumber = (row: number, col: number, gridRow: number, gridCol: number, minesArray: string[]): number => {
     
     let idCheck: string = row.toString().concat("-", col.toString())
     
-
     if (row < 0 || col < 0 || row > gridRow || col > gridCol){
       return 0;
     } else if (minesArray.includes(idCheck)) {
-      console.log(idCheck)
       return 1;
     } else {
       return 0;
