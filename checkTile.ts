@@ -1,33 +1,47 @@
 const checkTile = (() =>{
-  const checkMine = (minesArray: string[], target: HTMLDivElement, configIndex: number[]) : boolean => {
+  const checkMine = (minesArray: string[], targetId: string, configIndex: number[]) : void => {
+    const selectedTile = document.getElementById(`${targetId}`) as HTMLDivElement;
+
+
     const gridRow: number = configIndex[0];
     const gridCol: number = configIndex[1];
 
-    let id: string[] = target.id.split("-");
+    let id: string[] = targetId.split("-");
     const row: number = Number(id[0]);
     const col: number = Number(id[1]); 
 
     let mineCount: number = 0
 
-    if(minesArray.includes(target.id)) {
-      return true;
+    if(minesArray.includes(targetId)) {
+      alert("duar")
     }
 
-    for (let rowIndex = -1; rowIndex <= 1; rowIndex++){
-      for (let colIndex = -1; colIndex <= 1; colIndex++){
-        mineCount += checkMineNumber(row + rowIndex, col + colIndex, gridRow, gridCol, minesArray);
+    if(!selectedTile.classList.contains("gray")){
+      for (let rowIndex = -1; rowIndex <= 1; rowIndex++){
+        for (let colIndex = -1; colIndex <= 1; colIndex++){
+          mineCount += checkMineNumber(row + rowIndex, col + colIndex, gridRow, gridCol, minesArray);
+        }
+      }
+      
+      if (mineCount > 0) {
+      selectedTile.innerHTML = mineCount.toString();
+      } else {
+        selectedTile.classList.add("gray")
+        for (let rowIndex = -1; rowIndex <= 1; rowIndex++){
+          for (let colIndex = -1; colIndex <= 1; colIndex++){
+            let newRow = row + rowIndex;
+            let newCol = col + colIndex;
+
+            if (newRow < 0 || newCol < 0 || newRow > gridRow || newCol > gridCol){
+              break;} else{
+                let newTargetId = newRow.toString().concat("-", newCol.toString())
+                checkMine(minesArray, newTargetId, configIndex);
+              }
+            
+          }
+        }
       }
     }
-
-    if (mineCount > 0) {
-    target.innerHTML = mineCount.toString();
-    return true;
-    } else {
-      // else target.classList.add("gray")
-      return false
-    }
-
-    
   }
 
   const checkMineNumber = (row: number, col: number, gridRow: number, gridCol: number, minesArray: string[]): number => {

@@ -25,7 +25,25 @@ levelButtons.forEach(function(button, index) {
 
 gridContainer.onclick = (event: MouseEvent) => {
   const target = event.target as HTMLDivElement
-  checkTile.checkMine(minesArray, target, configIndex);
+  let status = checkTile.checkMine(minesArray, target.id, configIndex);
+
+  // switch (true) {
+  //   case (status > 0):
+  //     target.innerHTML = status.toString();
+  //     break;
+
+  //   case (status == 0):
+  //     target.classList.add("gray")
+  //     break;
+
+  //   case (status == -1):
+  //     alert("duar")
+  //     break;
+  
+  //   default:
+  //     break;
+  // }
+
 }
 
 
