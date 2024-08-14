@@ -18,6 +18,12 @@ body{
 .grid-tile{
   border: 1px solid black;
   aspect-ratio: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+p{
+  z-index:-2;
 }
 
 /* .grid-item{

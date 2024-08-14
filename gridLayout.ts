@@ -1,10 +1,10 @@
 
 const gridLayout = (() => {
-  const gridCreate = (level : number[], gridContainer : HTMLDivElement): void => {
+  const gridCreate = (config : number[], gridContainer : HTMLDivElement): HTMLCollection => {
     gridContainer.innerHTML = "";
 
-    const rows: number = level[0];
-    const cols: number = level[1];
+    const rows: number = config[0];
+    const cols: number = config[1];
 
     gridContainer.style.gridTemplate = `repeat(${rows}, 1fr) / repeat(${cols}, 1fr)`
   
@@ -12,9 +12,12 @@ const gridLayout = (() => {
       for (let col: number = 0; col < cols; col++ ) {
         const gridTile: HTMLDivElement = document.createElement("div");
         gridTile.classList.add("grid-tile")
+        gridTile.id = `${row}-${col}`
         gridContainer.appendChild(gridTile);
       }
     }
+
+    return gridContainer.children;
   }
 
   return {gridCreate}
