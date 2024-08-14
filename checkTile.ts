@@ -2,6 +2,8 @@ const checkTile = (() =>{
   const checkMine = (minesArray: string[], targetId: string, configIndex: number[]) : void => {
     const selectedTile = document.getElementById(`${targetId}`) as HTMLDivElement;
 
+    console.log(targetId)
+
 
     const gridRow: number = configIndex[0];
     const gridCol: number = configIndex[1];
@@ -32,12 +34,9 @@ const checkTile = (() =>{
             let newRow = row + rowIndex;
             let newCol = col + colIndex;
 
-            if (newRow < 0 || newCol < 0 || newRow > gridRow || newCol > gridCol){
-              break;} else{
-                let newTargetId = newRow.toString().concat("-", newCol.toString())
-                checkMine(minesArray, newTargetId, configIndex);
-              }
-            
+            if (newRow >= 0 && newCol >= 0 && newRow < gridRow && newCol < gridCol){
+              let newTargetId = newRow.toString().concat("-", newCol.toString())
+              checkMine(minesArray, newTargetId, configIndex);} 
           }
         }
       }
