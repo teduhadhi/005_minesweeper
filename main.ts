@@ -8,8 +8,12 @@ const config: number[][] = [
   [16, 9, 40],
 ]
 
-const levelButtons = document.querySelectorAll(".button-level") as NodeListOf<HTMLButtonElement>;
+
 const gridContainer = document.querySelector(".grid-container") as HTMLDivElement;
+const levelButtons = document.querySelectorAll(".button-level") as NodeListOf<HTMLButtonElement>;
+const flagButton = document.querySelector(".button-flag") as HTMLButtonElement;
+
+let flagStatus: boolean = false;
 let minesArray: string[] = [];
 let configIndex: number[] = [];
 let gridArray = gridContainer.children as HTMLCollection;
@@ -23,27 +27,27 @@ levelButtons.forEach(function(button, index) {
   }
 })
 
+flagButton.onclick = (event: MouseEvent) => {
+  const target = event.target as HTMLDivElement
+
+  if(flagStatus){
+    target.classList.remove("gray")
+    flagStatus = false;
+  } else{
+    target.classList.add("gray")
+    flagStatus = true;
+  }
+}
+
 gridContainer.onclick = (event: MouseEvent) => {
   const target = event.target as HTMLDivElement
-  let status = checkTile.checkMine(minesArray, target.id, configIndex);
 
-  // switch (true) {
-  //   case (status > 0):
-  //     target.innerHTML = status.toString();
-  //     break;
-
-  //   case (status == 0):
-  //     target.classList.add("gray")
-  //     break;
-
-  //   case (status == -1):
-  //     alert("duar")
-  //     break;
-  
-  //   default:
-  //     break;
-  // }
-
+  if(!flagStatus){
+    checkTile.checkMine(minesArray, target.id, configIndex);
+  }
+  else {
+    target.innerHTML != "" ? target.innerHTML = "flag" : target.innerHTML = ""
+  }
 }
 
 

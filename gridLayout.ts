@@ -1,10 +1,9 @@
 
 const gridLayout = (() => {
-  const gridCreate = (config : number[], gridContainer : HTMLDivElement): HTMLCollection => {
+  const gridCreate = (configIndex : number[], gridContainer : HTMLDivElement): HTMLCollection => {
     gridContainer.innerHTML = "";
 
-    const rows: number = config[0];
-    const cols: number = config[1];
+    const [rows, cols] = configIndex;
 
     gridContainer.style.gridTemplate = `repeat(${rows}, 1fr) / repeat(${cols}, 1fr)`
   
