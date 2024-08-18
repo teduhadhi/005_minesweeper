@@ -1,15 +1,15 @@
 const mineSpreads = (() => {
   const mineSet = (config: number[], tiles: HTMLCollection) : string[] => {
-    let [rows, cols, mineNumber] = config; 
+    let [rows, cols, mines] = config; 
     let minesArray: string[] = []
 
-    while(mineNumber > 0){
+    while(mines > 0){
       let row: number = Math.floor(Math.random() * rows);
       let col: number = Math.floor(Math.random() * cols);
       let id: string = row.toString().concat("-", col.toString())
       if (!minesArray.includes(id)){
         minesArray.push(id);
-        mineNumber--;
+        mines--;
       }
     }
     

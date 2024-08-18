@@ -23,6 +23,7 @@ levelButtons.forEach(function(button, index) {
   button.onclick = (): number[] => {
     gridArray = gridLayout.gridCreate(config[index], gridContainer);
     minesArray = mineSpreads.mineSet(config[index], gridArray);
+    checkTile.tileConfig(config[index], minesArray);
     return configIndex = config[index];
   }
 })
@@ -43,7 +44,7 @@ gridContainer.onclick = (event: MouseEvent) => {
   const target = event.target as HTMLDivElement
 
   if(!flagStatus){
-    checkTile.checkMine(minesArray, target.id, configIndex);
+    checkTile.checkMine(target.id);
   }
   else {
     target.innerHTML != "" ? target.innerHTML = "flag" : target.innerHTML = ""

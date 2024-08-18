@@ -1,12 +1,23 @@
 const checkTile = (() =>{
 
-  const checkMine = (minesArray: string[], targetId: string, configIndex: number[]) : void => {
+  let gridRow: number, 
+  gridCol: number, 
+  mines: number, 
+  minesArray: string[],
+  counter: number;
+
+  const tileConfig = (configIndex: number[], mineArray: string[]) => {
+    [gridRow, gridCol, mines] = configIndex;
+    counter = 0;
+    minesArray = mineArray;
+  }
+
+  const checkMine = (targetId: string) : void => {
     const selectedTile = document.getElementById(`${targetId}`) as HTMLDivElement;
     const id: string[] = targetId.split("-");
     const [row, col] = id.map((item => Number(item)))
-    const [gridRow, gridCol, mines] = configIndex
 
-    let mineCount: number = 0
+    let mineCount: number = 0;
 
     if(minesArray.includes(targetId)) {
       alert("duar")
@@ -16,35 +27,38 @@ const checkTile = (() =>{
     if(!selectedTile.classList.contains("gray")){
       for (let rowIndex = -1; rowIndex <= 1; rowIndex++) {
         for (let colIndex = -1; colIndex <= 1; colIndex++) {
-          mineCount += checkMineNumber(row + rowIndex, col + colIndex, gridRow, gridCol, minesArray);
+          mineCount += checkMineNumber(row + rowIndex, col + colIndex);
         }
       }
       
       if (mineCount > 0) {
       selectedTile.innerHTML = mineCount.toString();
-      !selectedTile.classList.contains("x") ? 1 : 1;
+      if (!selectedTile.classList.contains("x")){
+        counter++;
+      }
       selectedTile.classList.add("x")
 
       } else {
       selectedTile.classList.add("gray")
+      counter++;
       for (let rowIndex = -1; rowIndex <= 1; rowIndex++) {
         for (let colIndex = -1; colIndex <= 1; colIndex++) {
           let newRow = row + rowIndex;
           let newCol = col + colIndex;
           if (newRow >= 0 && newCol >= 0 && newRow < gridRow && newCol < gridCol) {
             let newTargetId = newRow.toString().concat("-", newCol.toString())
-            checkMine(minesArray, newTargetId, configIndex);} 
+            checkMine(newTargetId);} 
           }
         }
       }
     }
+    if (counter == (gridRow * gridCol - mines)) {
+      alert("cleared")
+    }
   }
 
-  
-  const checkMineNumber = (row: number, col: number, gridRow: number, gridCol: number, minesArray: string[]): number => {
-    
+  const checkMineNumber = (row: number, col: number): number => {
     let idCheck: string = row.toString().concat("-", col.toString())
-    
     if (row < 0 || col < 0 || row > gridRow || col > gridCol){
       return 0;
     } else if (minesArray.includes(idCheck)) {
@@ -55,6 +69,7 @@ const checkTile = (() =>{
   }
 
   return{
+    tileConfig,
     checkMine
   }
 
