@@ -1,13 +1,4 @@
 const checkTile = (() =>{
-  const tileOpened = () => {
-    let counter = 0;
-    return () => {
-      console.log(counter)
-      return ++counter
-      
-    };
-  }
-  const tileCount = tileOpened();
 
   const checkMine = (minesArray: string[], targetId: string, configIndex: number[]) : void => {
     const selectedTile = document.getElementById(`${targetId}`) as HTMLDivElement;
@@ -31,7 +22,7 @@ const checkTile = (() =>{
       
       if (mineCount > 0) {
       selectedTile.innerHTML = mineCount.toString();
-      !selectedTile.classList.contains("x") ? tileCount() : 1;
+      !selectedTile.classList.contains("x") ? 1 : 1;
       selectedTile.classList.add("x")
 
       } else {
@@ -45,11 +36,8 @@ const checkTile = (() =>{
             checkMine(minesArray, newTargetId, configIndex);} 
           }
         }
-        tileCount();
       }
     }
-
-    ((gridRow - 1) * (gridCol - 1)) - mines == ? alert("cleared") : 1
   }
 
   
