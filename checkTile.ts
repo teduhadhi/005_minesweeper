@@ -1,9 +1,19 @@
 const checkTile = (() =>{
+  const tileOpened = () => {
+    let counter = 0;
+    return () => {
+      console.log(counter)
+      return ++counter
+      
+    };
+  }
+  const tileCount = tileOpened();
+
   const checkMine = (minesArray: string[], targetId: string, configIndex: number[]) : void => {
     const selectedTile = document.getElementById(`${targetId}`) as HTMLDivElement;
     const id: string[] = targetId.split("-");
     const [row, col] = id.map((item => Number(item)))
-    const [gridRow, gridCol] = configIndex
+    const [gridRow, gridCol, mines] = configIndex
 
     let mineCount: number = 0
 
@@ -13,28 +23,33 @@ const checkTile = (() =>{
     }
 
     if(!selectedTile.classList.contains("gray")){
-      for (let rowIndex = -1; rowIndex <= 1; rowIndex++){
-        for (let colIndex = -1; colIndex <= 1; colIndex++){
+      for (let rowIndex = -1; rowIndex <= 1; rowIndex++) {
+        for (let colIndex = -1; colIndex <= 1; colIndex++) {
           mineCount += checkMineNumber(row + rowIndex, col + colIndex, gridRow, gridCol, minesArray);
         }
       }
       
       if (mineCount > 0) {
       selectedTile.innerHTML = mineCount.toString();
+      !selectedTile.classList.contains("x") ? tileCount() : 1;
+      selectedTile.classList.add("x")
+
       } else {
       selectedTile.classList.add("gray")
-      for (let rowIndex = -1; rowIndex <= 1; rowIndex++){
-        for (let colIndex = -1; colIndex <= 1; colIndex++){
+      for (let rowIndex = -1; rowIndex <= 1; rowIndex++) {
+        for (let colIndex = -1; colIndex <= 1; colIndex++) {
           let newRow = row + rowIndex;
           let newCol = col + colIndex;
-
           if (newRow >= 0 && newCol >= 0 && newRow < gridRow && newCol < gridCol) {
             let newTargetId = newRow.toString().concat("-", newCol.toString())
             checkMine(minesArray, newTargetId, configIndex);} 
           }
         }
+        tileCount();
       }
     }
+
+    ((gridRow - 1) * (gridCol - 1)) - mines == ? alert("cleared") : 1
   }
 
   
@@ -49,8 +64,8 @@ const checkTile = (() =>{
     } else {
       return 0;
     }
-
   }
+
   return{
     checkMine
   }

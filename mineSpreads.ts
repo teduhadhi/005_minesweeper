@@ -1,8 +1,6 @@
 const mineSpreads = (() => {
   const mineSet = (config: number[], tiles: HTMLCollection) : string[] => {
-    const rows: number = config[0];
-    const cols: number = config[1];
-    let mineNumber: number = config[2];
+    let [rows, cols, mineNumber] = config; 
     let minesArray: string[] = []
 
     while(mineNumber > 0){
