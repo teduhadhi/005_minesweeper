@@ -71,7 +71,7 @@ const checkTile = (() => {
 
 	const checkMineNumber = (row: number, col: number): number => {
 		const idCheck: string = row.toString().concat("-", col.toString());
-		if (row < 0 || col < 0 || row > gridRow || col > gridCol) {
+		if (row < 0 || col < 0 || row >= gridRow || col >= gridCol) {
 			return 0;
 		} else if (minesArray.includes(idCheck)) {
 			return 1;
@@ -125,20 +125,17 @@ const checkTile = (() => {
 				}
 				if (flagCounter >= mineCounter && !tileChecked && !flagExist) {
 					selectedTile.classList.add("gray");
+          selectedTile.setAttribute("data-status", "checked");
+          counter++
+          if (counter == gridRow * gridCol - mines) {
+            alert("cleared");
+          }
 				}
 			}
 		}
 		if (flagCounter >= mineCounter && misplacedFlag > 0) {
 			alert("duar");
 		}
-		console.log(
-			"Mine ",
-			mineCounter,
-			", Flag ",
-			flagCounter,
-			",misplaced ",
-			misplacedFlag
-		);
 	};
 
 	return {
@@ -147,5 +144,6 @@ const checkTile = (() => {
 		checkBomb,
 	};
 })();
+
 
 export default checkTile;
