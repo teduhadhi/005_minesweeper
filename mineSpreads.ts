@@ -16,9 +16,9 @@ const mineSpreads = (() => {
     for (const tile of tiles){
       if (minesArray.includes(tile.id)){
         // const item: HTMLParagraphElement = document.createElement("p");
-        tile.innerHTML = "test";
+        // tile.innerHTML = "test";
         // tile.appendChild(item);
-        tile.setAttribute("data-status", "marked");
+        tile.setAttribute("data-status", "mine");
         }
       }
       return minesArray;
