@@ -1,0 +1,53 @@
+.display-board {
+  position: absolute;
+  opacity: 0;
+  z-index:3
+}
+
+.container-grid {
+  display: grid;
+	background-color: lightgray;
+	width: 500px;
+	border: 2.5px solid lightgray;
+	border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.grid-tile {
+	background-color: white;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	aspect-ratio: 1;
+	border: 1px solid lightgray;
+	cursor: pointer;
+	z-index: 2;
+	font-size: 1.5em;
+	transition: all 0.15s ease;
+	&:active {
+		box-shadow: inset 0px 0px 5px gray;
+	}
+}
+
+p {
+	z-index: -2;
+}
+
+.gray {
+	background-color: lightgray;
+	border-radius: 0;
+	&:active {
+		box-shadow: none;
+	}
+}
+
+@media (max-width: 425px) {
+	.grid-container {
+		width: 300px;
+	}
+
+	.grid-tile {
+		font-size: 1em;
+	}
+}

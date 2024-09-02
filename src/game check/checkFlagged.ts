@@ -1,6 +1,10 @@
-const checkBomb = (targetId: string): void => {
+import checkTile from "./checkTile";
+
+export const checkFlagged = (targetId: string, configIndex: number[]): void => {
   const id: string[] = targetId.split("-");
   const [row, col] = id.map((item) => Number(item));
+
+  let [gridRow, gridCol] = configIndex;
 
   let mineCounter: number = 0;
   let flagCounter: number = 0;
@@ -25,41 +29,27 @@ const checkBomb = (targetId: string): void => {
         `${newTargetId}`
       ) as HTMLDivElement;
 
-      const mineExist =
+      const isAMineExist =
         selectedTile.attributes["data-status"]?.value == "mine";
-
-      const flagExist = selectedTile.innerHTML == "🚩";
-      const tileChecked =
+      const isFlagged = selectedTile.innerHTML == "🚩";
+      const isChecked =
         selectedTile.attributes["data-status"]?.value == "checked";
 
-      if (mineExist) {
+      if (isAMineExist) {
         mineCounter++;
-        if (!flagExist) {
+        if (!isFlagged) {
           misplacedFlag++;
         }
       }
-      if (flagExist) {
+      if (isFlagged) {
         flagCounter++;
       }
-      if (flagCounter >= mineCounter && !tileChecked && !flagExist) {
-        selectedTile.classList.add("gray");
-        selectedTile.setAttribute("data-status", "checked");
-        counter++
-        if (counter == gridRow * gridCol - mines) {
-          alert("cleared");
-        }
+      if (flagCounter >= mineCounter && !isChecked && !isFlagged) {
+        checkTile.checkMine(newTargetId)
       }
     }
   }
   if (flagCounter >= mineCounter && misplacedFlag > 0) {
     alert("duar");
   }
-  console.log(
-    "Mine ",
-    mineCounter,
-    ", Flag ",
-    flagCounter,
-    ",misplaced ",
-    misplacedFlag
-  );
 };

@@ -1,0 +1,27 @@
+.opaque{
+  opacity: 0;
+}
+
+@keyframes zoom {
+	from {
+		transform: scale(100%);
+	}
+	to {
+		transform: scale(125%);
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes display-none {
+	to {
+		display: none;
+	}
+}

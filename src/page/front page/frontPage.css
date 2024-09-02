@@ -1,0 +1,57 @@
+.container-front-page {
+	position: absolute;
+	display: grid;
+	place-items: center;
+	z-index: 5;
+	height: 100vh;
+	width: 100vw;
+	cursor: pointer;
+	transition: all 2s ease;
+}
+
+.container-front-tiles {
+	position: absolute;
+	display: grid;
+	height: 100vh;
+	width: 100vw;
+}
+
+.front-tiles {
+	box-shadow: inset 0 0 2px whitesmoke;
+	background-color: lightgray;
+	transition: all 0.5s ease;
+}
+
+.container-text {
+	position: absolute;
+	display: grid;
+	place-items: center;
+	gap: 2em;
+	z-index: 2;
+	transition: all 2s ease;
+
+	h1 {
+		font-size: 4em;
+		font-weight: 100;
+		letter-spacing: 10px;
+	}
+
+	p {
+		font-size: 2em;
+		font-weight: 100;
+		letter-spacing: 10px;
+	}
+}
+
+@media (max-width: 425px) {
+	.container-text {
+		gap: 1em;
+		h1 {
+			font-size: 2em;
+		}
+
+		p {
+			font-size: 1em;
+		}
+	}
+}
