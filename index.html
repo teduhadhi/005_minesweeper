@@ -4,21 +4,31 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href=".\style.css" />
-    <link rel="stylesheet" href="src/page/front page/frontPage.css">
-    <link rel="stylesheet" href="src/page/level selection page/levelSelection.css">
-    <link rel="stylesheet" href="src/page/game page/gamePage.css">
-    <link rel="stylesheet" href="src/animation/animation.css">
+		<link rel="stylesheet" href="src/page/front page/frontPage.css" />
+		<link
+			rel="stylesheet"
+			href="src/page/level selection page/levelSelection.css"
+		/>
+		<link rel="stylesheet" href="src/page/game page/gamePage.css" />
+		<link rel="stylesheet" href="src/animation/animation.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+			integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 		<title>Document</title>
 	</head>
 	<body>
-    <div class="container-front-page">
-      <div class="container-text">
-        <h1>MINESWEEPER</h1>
-        <p>Tap The Tile</p>
-      </div>
-      <div class="container-front-tiles"></div>
-    </div>
-		
+		<div class="container-front-page">
+			<div class="container-text">
+				<h1>MINESWEEPER</h1>
+				<p>Tap The Tile</p>
+			</div>
+			<div class="container-front-tiles"></div>
+		</div>
+
 		<div class="container-level-page">
 			<h2>Select Your Difficulty</h2>
 			<div class="container-levels">
@@ -30,14 +40,21 @@
 			</div>
 		</div>
 
-		<div class="display-board">
+		<div class="container-board">
+			<div class="header-board">
+				<div class="left-section">
+					<div class="container-reset-timer">
+						<p class="reset">Reset</p>
+						<p class="timer">00:00</p>
+					</div>
 
-			<button class="button-flag" id="button4">
-				🚩
-			</button>
-      <button class="button-flag" id="button4">
-				🚩
-			</button>
+					<p class="home">&#8962;</p>
+				</div>
+				<div class="right-section">
+					<p class="counter">flag counter</p>
+					<button class="button-flag" id="button4">🏴</button>
+				</div>
+			</div>
 			<div class="container-grid"></div>
 		</div>
 

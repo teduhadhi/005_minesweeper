@@ -4,6 +4,7 @@ import checkTile from "./src/game check/checkTile";
 import { frontAnimation } from "./src/page/front page/frontPage";
 import { checkFlagged } from "./src/game check/checkFlagged";
 import switchPage from "./src/animation/switchPage";
+import checkGamge from "./src/game check/checkGame";
 
 const LEVEL_CONFIG: number[][] = [
 	[9, 9, 10],
@@ -21,11 +22,16 @@ const levelButtons = document.querySelectorAll(
 	".button-level"
 ) as NodeListOf<HTMLButtonElement>;
 const flagButton = document.querySelector(".button-flag") as HTMLButtonElement;
-const gameBoard = document.querySelector(".display-board") as HTMLDivElement;
+const gameBoard = document.querySelector(".container-board") as HTMLDivElement;
+const flagCounter = document.querySelector(".counter") as HTMLParagraphElement;
+const gameReset = document.querySelector(".reset") as HTMLParagraphElement;
 
 let flagStatus: boolean = false;
 let minesArray: string[] = [];
 let configIndex: number[] = [];
+let levelIndex: number;
+let flagNumber: number;
+let gameStart: boolean = false;
 let gridArray = gridContainer.children as HTMLCollection;
 
 frontAnimation(levelPageContainer);
@@ -33,17 +39,32 @@ window.onresize = () => frontAnimation(levelPageContainer);
 
 levelButtons.forEach(function (button, index) {
 	button.onclick = (): void => {
-
-    switchPage.fade(levelPageContainer,gameBoard,0.5)
-
-		gridArray = gridLayout.gridCreate(LEVEL_CONFIG[index], gridContainer);
-		minesArray = mineSpreads.mineSet(LEVEL_CONFIG[index], gridArray);
-
-		checkTile.tileConfig(LEVEL_CONFIG[index], minesArray);
-
-		configIndex = LEVEL_CONFIG[index];
+		handleClickLevelButton(index);
 	};
 });
+
+const handleClickLevelButton = (index: number) => {
+	switchPage.fade(levelPageContainer, gameBoard, 0.5);
+
+	handleLevelSelect(index);
+};
+
+const handleLevelSelect = (index: number) => {
+	gridArray = gridLayout.gridCreate(LEVEL_CONFIG[index], gridContainer);
+	minesArray = mineSpreads.mineSet(LEVEL_CONFIG[index], gridArray);
+	checkTile.tileConfig(LEVEL_CONFIG[index], minesArray);
+
+	configIndex = LEVEL_CONFIG[index];
+	flagNumber = LEVEL_CONFIG[index][2];
+
+	flagCounter.innerHTML = flagNumber.toString();
+	levelIndex = index;
+};
+
+gameReset.onclick = () => {
+	handleLevelSelect(levelIndex);
+	if (gameStart) gameStart = false, checkGamge.gameReset();
+};
 
 flagButton.onclick = (event: MouseEvent) => {
 	const target = event.target as HTMLDivElement;
@@ -57,11 +78,13 @@ flagButton.onclick = (event: MouseEvent) => {
 };
 
 gridContainer.onclick = (event: MouseEvent) => {
-	const target    = event.target as HTMLDivElement;
-	const isFlagged = target.innerHTML == "🚩";
+	const target = event.target as HTMLDivElement;
+	const isFlagged = target.innerHTML == "🏴";
 	const isChecked = target.attributes["data-status"]?.value == "checked";
-  const isANumber = target.classList.contains("x");
-	const isATile   = target.classList.contains("grid-tile");
+	const isANumber = target.classList.contains("x");
+	const isATile = target.classList.contains("grid-tile");
+
+	if (!gameStart) gameStart = true, checkGamge.gameStart();
 
 	if (isATile) {
 		if (!flagStatus) {
@@ -70,11 +93,12 @@ gridContainer.onclick = (event: MouseEvent) => {
 		} else {
 			if (isANumber) checkFlagged(target.id, configIndex);
 			if (!isChecked) {
-				target.innerHTML != "🚩"
-					? (target.innerHTML = "🚩")
-					: (target.innerHTML = "");
-          
+				target.innerHTML != "🏴"
+					? ((target.innerHTML = "🏴"), flagNumber--)
+					: ((target.innerHTML = ""), flagNumber++);
 			}
 		}
 	}
+
+	flagCounter.innerHTML = flagNumber.toString();
 };

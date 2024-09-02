@@ -31,7 +31,7 @@ export const checkFlagged = (targetId: string, configIndex: number[]): void => {
 
       const isAMineExist =
         selectedTile.attributes["data-status"]?.value == "mine";
-      const isFlagged = selectedTile.innerHTML == "🚩";
+      const isFlagged = selectedTile.innerHTML == "🏴";
       const isChecked =
         selectedTile.attributes["data-status"]?.value == "checked";
 

@@ -1,32 +1,119 @@
-.display-board {
-  position: absolute;
-  opacity: 0;
-  z-index:3
+.container-board {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 3;
+	opacity: 0;
 }
 
 .container-grid {
-  display: grid;
-	background-color: lightgray;
+	display: grid;
 	width: 500px;
+	background-color: lightgray;
 	border: 2.5px solid lightgray;
 	border-radius: 6px;
-  transition: all 0.15s ease;
+	transition: all 0.15s ease;
 }
 
 .grid-tile {
-	background-color: white;
-	border-radius: 5px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	aspect-ratio: 1;
+	background-color: white;
 	border: 1px solid lightgray;
+	border-radius: 5px;
+	aspect-ratio: 1;
+
 	cursor: pointer;
 	z-index: 2;
+
 	font-size: 1.5em;
 	transition: all 0.15s ease;
 	&:active {
 		box-shadow: inset 0px 0px 5px gray;
+		background-color: lightskyblue;
+	}
+}
+
+.header-board {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin-bottom: 10px;
+
+	.left-section {
+		display: flex;
+		width: 100px;
+		justify-content: space-between;
+    align-items: center;
+    margin-left: 2px;
+		gap: 10px;
+		height: 100%;
+		font-size: 1.5em;
+		font-weight: 100;
+
+		.home {
+			font-size: 50px;
+			color: gray;
+			z-index: 3;
+			cursor: pointer;
+
+			&:hover {
+				color: black;
+			}
+		}
+
+		.container-reset-timer {
+			display: flex;
+			flex-direction: column;
+			width: 150px;
+			.reset {
+				z-index: 3;
+				/* transition: all 0.5s ease; */
+				cursor: pointer;
+
+				&:hover {
+					font-weight: 300;
+				}
+			}
+		}
+	}
+
+	.right-section {
+		display: flex;
+		width: 150px;
+		justify-content: end;
+    align-items: center;
+    margin-left: 1px;
+		gap: 5px;
+		.counter {
+			height: 100%;
+			font-size: 3em;
+			font-weight: 100;
+		}
+	}
+}
+
+.button-flag {
+	width: auto;
+	padding: 0.40em;
+	aspect-ratio: 1;
+	border: 2px solid lightgray;
+	border-radius: 5px;
+	background-color: whitesmoke;
+	font-size: 1.5em;
+
+	cursor: pointer;
+	transition: all 0.15s ease;
+
+	&:hover {
+		border: 2px solid gray;
+	}
+
+	&:active {
+		border-radius: 20px;
 	}
 }
 
@@ -36,14 +123,14 @@ p {
 
 .gray {
 	background-color: lightgray;
-	border-radius: 0;
+	border-radius: none;
 	&:active {
 		box-shadow: none;
 	}
 }
 
 @media (max-width: 425px) {
-	.grid-container {
+	.container-grid {
 		width: 300px;
 	}
 
