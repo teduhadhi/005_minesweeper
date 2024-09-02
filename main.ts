@@ -1,7 +1,7 @@
-import gridLayout from "./gridLayout";
-import mineSpreads from "./mineSpreads";
-import checkTile from "./checkTile";
-import { frontAnimation } from "./frontAnimation";
+import gridLayout from "./src/game layout/gridLayout";
+import mineSpreads from "./src/game layout/mineSpreads";
+import checkTile from "./src/game check/checkTile";
+import { frontAnimation } from "./src/page/frontAnimation";
 
 const LEVEL_CONFIG: number[][] = [
 	[9, 9, 10],
@@ -9,30 +9,37 @@ const LEVEL_CONFIG: number[][] = [
 	[16, 9, 40],
 ];
 
-
-
 const gridContainer = document.querySelector(
 	".grid-container"
+) as HTMLDivElement;
+const levelButtonsContainer = document.querySelector(
+	".level-select-container"
 ) as HTMLDivElement;
 const levelButtons = document.querySelectorAll(
 	".button-level"
 ) as NodeListOf<HTMLButtonElement>;
 const flagButton = document.querySelector(".button-flag") as HTMLButtonElement;
-const frontContainer = document.querySelector(".front") as HTMLDivElement
+const frontContainer = document.querySelector(".front") as HTMLDivElement;
+const gameBoard = document.querySelector(".display-board") as HTMLDivElement;
 
 let flagStatus: boolean = false;
 let minesArray: string[] = [];
 let configIndex: number[] = [];
 let gridArray = gridContainer.children as HTMLCollection;
 
-frontAnimation(frontContainer)
-window.onresize = () => frontAnimation(frontContainer)
+frontAnimation(frontContainer, levelButtonsContainer);
+window.onresize = () => frontAnimation(frontContainer, levelButtonsContainer);
 
 levelButtons.forEach(function (button, index) {
 	button.onclick = (): number[] => {
+		gameBoard.classList.add("display-flex");
+		levelButtonsContainer.classList.add("zoom-fade");
+
 		gridArray = gridLayout.gridCreate(LEVEL_CONFIG[index], gridContainer);
 		minesArray = mineSpreads.mineSet(LEVEL_CONFIG[index], gridArray);
+
 		checkTile.tileConfig(LEVEL_CONFIG[index], minesArray);
+
 		return (configIndex = LEVEL_CONFIG[index]);
 	};
 });
@@ -50,8 +57,6 @@ flagButton.onclick = (event: MouseEvent) => {
 
 gridContainer.onclick = (event: MouseEvent) => {
 	const target = event.target as HTMLDivElement;
-	const mineExist = target.attributes["data-status"]?.value == "mine";
-
 	const flagExist = target.innerHTML == "🚩";
 	const tileChecked = target.attributes["data-status"]?.value == "checked";
 	const tileValidation = target.classList.contains("grid-tile");
