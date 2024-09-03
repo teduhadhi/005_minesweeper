@@ -5,6 +5,7 @@ import { frontAnimation } from "./src/page/front page/frontPage";
 import { checkFlagged } from "./src/game check/checkFlagged";
 import switchPage from "./src/animation/switchPage";
 import checkGamge from "./src/game check/checkGame";
+import reloadPage from "./src/animation/reloadPage";
 
 const LEVEL_CONFIG: number[][] = [
 	[9, 9, 10],
@@ -12,6 +13,8 @@ const LEVEL_CONFIG: number[][] = [
 	[16, 9, 40],
 ];
 
+const htmlBody = document.body as HTMLBodyElement;
+const gameBoard = document.querySelector(".container-board") as HTMLDivElement;
 const gridContainer = document.querySelector(
 	".container-grid"
 ) as HTMLDivElement;
@@ -21,11 +24,10 @@ const levelPageContainer = document.querySelector(
 const levelButtons = document.querySelectorAll(
 	".button-level"
 ) as NodeListOf<HTMLButtonElement>;
+const gameReset = document.querySelector(".reset") as HTMLButtonElement;
+const backToHome = document.querySelector(".home") as HTMLButtonElement;
 const flagButton = document.querySelector(".button-flag") as HTMLButtonElement;
-const gameBoard = document.querySelector(".container-board") as HTMLDivElement;
 const flagCounter = document.querySelector(".counter") as HTMLParagraphElement;
-const gameReset = document.querySelector(".reset") as HTMLParagraphElement;
-
 
 let flagStatus: boolean = false;
 let minesArray: string[] = [];
@@ -41,7 +43,9 @@ window.onresize = () => frontAnimation(levelPageContainer);
 
 levelButtons.forEach(function (button, index) {
 	button.onclick = (): void => {
-		index < 2? handleClickLevelButton(index) : alert("coming soon")
+		handleClickLevelButton(index);
+		
+		if (index == 2) reloadPage.expandPage(htmlBody)
 	};
 });
 
@@ -60,11 +64,22 @@ const handleLevelSelect = (index: number) => {
 	flagNumber = LEVEL_CONFIG[index][2];
 
 	flagCounter.innerHTML = flagNumber.toString();
+	flagButton.classList.remove("gray");
+	flagStatus = false;
+
 	levelIndex = index;
 };
 
 gameReset.onclick = () => {
 	handleLevelSelect(levelIndex);
+	if (gameStart)
+		(gameStart = false), (gameOver = false), checkGamge.gameReset();
+};
+
+backToHome.onclick = () => {
+	reloadPage.compactPage(htmlBody)
+
+	switchPage.fade(gameBoard, levelPageContainer, 0.5);
 	if (gameStart)
 		(gameStart = false), (gameOver = false), checkGamge.gameReset();
 };

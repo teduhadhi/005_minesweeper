@@ -1,7 +1,3 @@
-.opaque{
-  opacity: 0;
-}
-
 @keyframes zoom {
 	from {
 		transform: scale(100%);
@@ -20,8 +16,11 @@
 	}
 }
 
-@keyframes display-none {
+@keyframes expand {
+	from {
+		height: 100vh;
+	}
 	to {
-		display: none;
+		height: 125vh;
 	}
 }

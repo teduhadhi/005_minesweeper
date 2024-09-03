@@ -42,8 +42,6 @@ export const checkFlagged = (targetId: string, configIndex: number[]): void => {
 					item.classList.add("misplaced")
 					selectedTile.appendChild(item)
 				}
-					
-					
 			}
 		}
 	}

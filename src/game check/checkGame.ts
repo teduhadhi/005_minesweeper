@@ -22,7 +22,6 @@ const checkGamge = (() => {
 		} else if (minesArray && targetId) {
 			showTile.showMine(minesArray, targetId);
 			showTile.showMisplacedFlag()
-
 		}
 		gameOverCover.style.display = "grid";
 	};

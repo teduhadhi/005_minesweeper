@@ -1,11 +1,10 @@
 .container-board {
+	z-index: 3;
 	position: absolute;
-	display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	z-index: 3;
-	opacity: 0;
 }
 
 .container-grid {
@@ -15,25 +14,22 @@
 	border: 2.5px solid lightgray;
 	border-radius: 6px;
 	transition: all 0.15s ease;
-
 	anchor-name: --container-grid;
 }
 
 .grid-tile {
 	position: relative;
+	z-index: 2;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	aspect-ratio: 1;
 	background-color: white;
 	border: 1px solid lightgray;
-	border-radius: 5px;
-	aspect-ratio: 1;
-
-	cursor: pointer;
-	z-index: 2;
-
 	font-size: 1.5em;
-	transition: all 0.15s ease;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.2s ease;
 	&:active {
 		box-shadow: inset 0px 0px 5px gray;
 		background-color: lightskyblue;
@@ -42,54 +38,59 @@
 
 .header-board {
 	display: flex;
-	width: 100%;
 	justify-content: space-between;
+	align-items: center;
+	width: 100%;
 	margin-bottom: 0.75em;
 
 	.left-section {
 		display: flex;
-		width: 100px;
 		justify-content: space-between;
-    align-items: center;
-    margin-left: 2px;
 		gap: 10px;
-		height: 100%;
+		width: 100px;
+		margin-left: 2px;
 		font-size: 1.5em;
 		font-weight: 100;
-
-		.home {
-			font-size: 50px;
-			color: gray;
-			z-index: 3;
-			cursor: pointer;
-
-			&:hover {
-				color: black;
-			}
-		}
 
 		.container-reset-timer {
 			display: flex;
 			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 			width: 150px;
 			.reset {
-				z-index: 3;
-				/* transition: all 0.5s ease; */
+				background-color: transparent;
+				border: none;
+				font-size: 0.925em;
+				font-weight: 300;
+				color: gray;
 				cursor: pointer;
-
+				transition: all 0.15s ease;
 				&:hover {
-					font-weight: 300;
+					color: black;
 				}
+			}
+		}
+
+		.home {
+			padding: 0 13px;
+			background-color: transparent;
+			border: none;
+			font-size: 50px;
+			color: gray;
+			cursor: pointer;
+			transition: all 0.15s ease;
+			&:hover {
+				color: black;
 			}
 		}
 	}
 
 	.right-section {
 		display: flex;
-		width: 150px;
 		justify-content: end;
-    align-items: center;
-    margin-left: 1px;
+		align-items: center;
+		margin-left: 1px;
 		gap: 5px;
 		.counter {
 			height: 100%;
@@ -100,14 +101,11 @@
 }
 
 .button-flag {
-	width: auto;
-	padding: 0.40em;
-	aspect-ratio: 1;
+	padding: 0.4em;
+	background-color: whitesmoke;
 	border: 2px solid lightgray;
 	border-radius: 5px;
-	background-color: whitesmoke;
 	font-size: 1.5em;
-
 	cursor: pointer;
 	transition: all 0.15s ease;
 
@@ -122,32 +120,33 @@
 
 .mine {
 	opacity: 0;
-	position:absolute;
+	position: absolute;
 }
 
 .gray {
 	background-color: lightgray;
 	border-radius: none;
-	&:active {
-		box-shadow: none;
-	}
 }
 
-.game-over{
-	display: none;
+.exploded {
+	background-color: lightcoral;
+	border-radius: none;
+}
+
+.game-over {
 	position: absolute;
+	z-index: 3;
+	display: none;
 	position-anchor: --container-grid;
-  left: anchor(left);
-  top: anchor(top);
+	left: anchor(left);
+	top: anchor(top);
 	width: 500px;
 	aspect-ratio: 1;
 	background-color: lightgray;
-	border: 1px solid black;
 	opacity: 0.2;
-	z-index: 3;
 }
 
-.misplaced{
+.misplaced {
 	position: absolute;
 	top: 0;
 	right: 5%;

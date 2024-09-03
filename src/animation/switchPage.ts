@@ -5,19 +5,19 @@ const switchPage = (() => {
 		timeframe: number
 	) => {
 		firstPage.style.animation = `zoom ${timeframe}s ease-in forwards, fade ${timeframe}s ease-in reverse `;
-		secondPage.style.opacity = "0";
 
 		setTimeout(() => {
-			secondPage.style.transition = `opacity ${timeframe}s ease`;
-
-			secondPage.style.opacity = "1";
+			secondPage.style.animation = `fade ${timeframe / 2}s ease-in forwards `;
+			secondPage.style.display ="flex"
 		}, timeframe * 750);
 
-		secondPage.style.animation = "";
+		setTimeout(() => {
+			firstPage.style.display ="none"
+		}, timeframe * 1000);
 
 		setTimeout(() => {
-			firstPage.style.animation = `display-none 0s forwards`;
-		}, timeframe * 1000);
+			secondPage.style.animation =""
+		}, timeframe * 1250);
 	};
 
 	const fade = (
@@ -29,14 +29,16 @@ const switchPage = (() => {
 
 		setTimeout(() => {
 			secondPage.style.animation = `fade ${timeframe}s ease-in forwards `;
-			secondPage.style.opacity = "1";
+			secondPage.style.display ="flex"
 		}, timeframe * 500);
 
-		secondPage.style.animation = "";
+		setTimeout(() => {
+			firstPage.style.display ="none"
+		}, timeframe * 1000);
 
 		setTimeout(() => {
-			firstPage.style.animation = `display-none 0s forwards`;
-		}, timeframe * 1000);
+			secondPage.style.animation =""
+		}, timeframe * 1500);
 	};
 
 	return {

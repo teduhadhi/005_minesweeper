@@ -12,22 +12,26 @@ const showTile = (() => {
 
 			if (minesArray[index] == targetId) {
 				item.style.animation = "fade 0.2s ease-in forwards";
+				tile.classList.add("exploded");
+			} else {
+				setTimeout(() => {
+					item.style.animation = "fade 0.2s ease-in forwards";
+					tile.classList.add("gray");
+				}, 750 + Math.log(Number(index) + 1) * 250);
 			}
-
-			setTimeout(() => {
-				item.style.animation = "fade 0.2s ease-in forwards";
-			}, 750 + (Math.log(Number(index)+ 1) * 250));
 		}
 	};
 
 	const showMisplacedFlag = () => {
-		const misplacedFlagArray = document.querySelectorAll(".misplaced") as NodeListOf<HTMLParagraphElement>
-		for (const tile of misplacedFlagArray){
-			tile.innerHTML = "&#10799;"
+		const misplacedFlagArray = document.querySelectorAll(
+			".misplaced"
+		) as NodeListOf<HTMLParagraphElement>;
+		for (const tile of misplacedFlagArray) {
+			tile.innerHTML = "&#10799;";
 			tile.style.animation = "fade 0.05s ease-in forwards";
 		}
-	}
-	return {showMine, showMisplacedFlag}
+	};
+	return { showMine, showMisplacedFlag };
 })();
 
 export default showTile;

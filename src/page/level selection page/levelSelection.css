@@ -1,5 +1,5 @@
 .container-level-page {
-	display: flex;
+	display: none;
 	flex-direction: column;
 	align-items: center;
   z-index: 4;
