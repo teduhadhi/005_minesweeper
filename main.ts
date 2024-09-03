@@ -8,7 +8,7 @@ import checkGamge from "./src/game check/checkGame";
 
 const LEVEL_CONFIG: number[][] = [
 	[9, 9, 10],
-	[9, 9, 20],
+	[9, 9, 15],
 	[16, 9, 40],
 ];
 
@@ -99,6 +99,10 @@ gridContainer.onclick = (event: MouseEvent) => {
 			}
 		}
 	}
-
 	flagCounter.innerHTML = flagNumber.toString();
 };
+
+
+document.body.onclick = (event) => {
+	console.log(event.target)
+}

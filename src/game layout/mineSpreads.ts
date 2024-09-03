@@ -18,7 +18,7 @@ const mineSpreads = (() => {
         // const item: HTMLParagraphElement = document.createElement("p");
         // tile.innerHTML = "💣";
         // tile.appendChild(item);
-        tile.setAttribute("data-status", "mine");
+        tile.setAttribute("data-content", "mine");
         }
       }
       return minesArray;

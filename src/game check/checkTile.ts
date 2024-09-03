@@ -3,7 +3,8 @@ const checkTile = (() => {
 		gridCol: number,
 		mines: number,
 		minesArray: string[],
-		counter: number;
+		counter: number,
+		gameOver: boolean = false;
 
 	const tileConfig = (configIndex: number[], mineArray: string[]) => {
 		[gridRow, gridCol, mines] = configIndex;
@@ -17,14 +18,15 @@ const checkTile = (() => {
 		) as HTMLDivElement;
 		const id: string[] = targetId.split("-");
 		const [row, col] = id.map((item) => Number(item));
+		gameOver = false
 
 		let mineCount: number = 0;
 
-		if (selectedTile.innerHTML != "🚩") {
+		if (selectedTile.innerHTML != "🏴") {
 			selectedTile.setAttribute("data-status", "checked");
 
 			if (minesArray.includes(targetId)) {
-				alert("duar");
+				if (!gameOver) alert("duar"), (gameOver = true);
 				return;
 			}
 
@@ -64,7 +66,7 @@ const checkTile = (() => {
 				}
 			}
 			if (counter == gridRow * gridCol - mines) {
-				alert("cleared");
+				if (!gameOver) alert("cleared"), (gameOver = true);
 			}
 		}
 	};
@@ -85,6 +87,5 @@ const checkTile = (() => {
 		checkMine,
 	};
 })();
-
 
 export default checkTile;
