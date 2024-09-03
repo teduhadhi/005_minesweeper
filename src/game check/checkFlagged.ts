@@ -37,11 +37,11 @@ export const checkFlagged = (targetId: string, configIndex: number[]): void => {
 			}
 			if (isFlagged) {
 				flagCounter++;
-				// if(!isAMineExist) {
-				// 	const item: HTMLParagraphElement = document.createElement("p");
-				// 	item.classList.add("misplaced")
-				// 	selectedTile.appendChild(item)
-				// }
+				if(!isAMineExist) {
+					const item: HTMLParagraphElement = document.createElement("p");
+					item.classList.add("misplaced")
+					selectedTile.appendChild(item)
+				}
 					
 					
 			}

@@ -23,7 +23,8 @@ const showTile = (() => {
 	const showMisplacedFlag = () => {
 		const misplacedFlagArray = document.querySelectorAll(".misplaced") as NodeListOf<HTMLParagraphElement>
 		for (const tile of misplacedFlagArray){
-			// tile.innerHTML = "B"
+			tile.innerHTML = "&#10799;"
+			tile.style.animation = "fade 0.05s ease-in forwards";
 		}
 	}
 	return {showMine, showMisplacedFlag}

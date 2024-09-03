@@ -20,6 +20,7 @@
 }
 
 .grid-tile {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -144,8 +145,13 @@
 	border: 1px solid black;
 	opacity: 0.2;
 	z-index: 3;
+}
 
-	
+.misplaced{
+	position: absolute;
+	top: 0;
+	right: 5%;
+	font-size: 0.75em;
 }
 
 @media (max-width: 425px) {

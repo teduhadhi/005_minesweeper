@@ -24,7 +24,7 @@ const checkTile = (() => {
 
 		let mineCount: number = 0;
 
-		if (selectedTile.innerHTML != "🏴") {
+		if (!selectedTile.innerHTML.includes("🏴")) {
 			selectedTile.setAttribute("data-status", "checked");
 
 			if (minesArray.includes(targetId)) {

@@ -26,6 +26,7 @@ const gameBoard = document.querySelector(".container-board") as HTMLDivElement;
 const flagCounter = document.querySelector(".counter") as HTMLParagraphElement;
 const gameReset = document.querySelector(".reset") as HTMLParagraphElement;
 
+
 let flagStatus: boolean = false;
 let minesArray: string[] = [];
 let configIndex: number[] = [];
