@@ -31,21 +31,24 @@ export const checkFlagged = (targetId: string, configIndex: number[]): void => {
 			targetList.push(newTargetId);
 			const isAMineExist =
 				selectedTile.attributes["data-content"]?.value == "mine";
-			const isFlagged = selectedTile.innerHTML == "🏴";
+			const isFlagged = selectedTile.innerHTML.includes("🏴");
 			if (isAMineExist) {
 				mineCounter++;
 			}
 			if (isFlagged) {
 				flagCounter++;
-				if(!isAMineExist) {
+				if (!isAMineExist) {
 					const item: HTMLParagraphElement = document.createElement("p");
-					item.classList.add("misplaced")
-					selectedTile.appendChild(item)
+					item.classList.add("misplaced");
+					selectedTile.appendChild(item);
 				}
 			}
 		}
 	}
-	if (mineCounter <= flagCounter && flagCounter >= 1) {
+
+	if (mineCounter == flagCounter && flagCounter >= 1) {
+		console.log("Minecounter = ", mineCounter, ", Flagcounter = ", flagCounter);
+
 		targetList.forEach((target) => {
 			checkTile.checkMine(target);
 		});

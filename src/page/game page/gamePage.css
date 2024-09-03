@@ -140,8 +140,8 @@
 	position-anchor: --container-grid;
 	left: anchor(left);
 	top: anchor(top);
-	width: 500px;
-	aspect-ratio: 1;
+	width: anchor-size(width);
+	height: anchor-size(height);
 	background-color: lightgray;
 	opacity: 0.2;
 }

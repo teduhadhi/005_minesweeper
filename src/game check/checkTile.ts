@@ -21,10 +21,11 @@ const checkTile = (() => {
 		) as HTMLDivElement;
 		const id: string[] = targetId.split("-");
 		const [row, col] = id.map((item) => Number(item));
+		const isFlagged = selectedTile.innerHTML.includes("🏴")
 
 		let mineCount: number = 0;
 
-		if (!selectedTile.innerHTML.includes("🏴")) {
+		if (!isFlagged) {
 			selectedTile.setAttribute("data-status", "checked");
 
 			if (minesArray.includes(targetId)) {

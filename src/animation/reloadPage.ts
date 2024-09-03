@@ -4,12 +4,12 @@ const reloadPage = (() => {
 	const expandPage = (page: HTMLBodyElement) => {
 		pageExpand = true;
 		page.style.overflowY = "scroll";
-		page.style.animation = "expand 2s ease forwards";
+		page.style.animation = "expand 1.25s ease forwards";
 
 		setTimeout(() => {
 			page.style.animation = "";
 			page.style.height = "125vh";
-		}, 2000);
+		}, 1250);
 	};
 
 	const compactPage = (page: HTMLBodyElement) => {

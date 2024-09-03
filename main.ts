@@ -50,7 +50,7 @@ levelButtons.forEach(function (button, index) {
 });
 
 const handleClickLevelButton = (index: number) => {
-	switchPage.fade(levelPageContainer, gameBoard, 0.5);
+	switchPage.fade(levelPageContainer, gameBoard, 0.35);
 
 	handleLevelSelect(index);
 };
@@ -78,8 +78,7 @@ gameReset.onclick = () => {
 
 backToHome.onclick = () => {
 	reloadPage.compactPage(htmlBody)
-
-	switchPage.fade(gameBoard, levelPageContainer, 0.5);
+	switchPage.fade(gameBoard, levelPageContainer, 0.35);
 	if (gameStart)
 		(gameStart = false), (gameOver = false), checkGamge.gameReset();
 };
@@ -97,7 +96,7 @@ flagButton.onclick = (event: MouseEvent) => {
 
 gridContainer.onclick = (event: MouseEvent) => {
 	const target = event.target as HTMLDivElement;
-	const isFlagged = target.innerHTML == "🏴";
+	const isFlagged = target.innerHTML.includes("🏴")
 	const isChecked = target.attributes["data-status"]?.value == "checked";
 	const isATile = target.classList.contains("grid-tile");
 	const isANumber = target.classList.contains("x");
@@ -111,7 +110,7 @@ gridContainer.onclick = (event: MouseEvent) => {
 		} else {
 			if (isANumber) checkFlagged(target.id, configIndex);
 			if (!isChecked) {
-				target.innerHTML != "🏴"
+				!isFlagged
 					? ((target.innerHTML = "🏴"), flagNumber--)
 					: ((target.innerHTML = ""), flagNumber++);
 			}
@@ -120,6 +119,6 @@ gridContainer.onclick = (event: MouseEvent) => {
 	flagCounter.innerHTML = flagNumber.toString();
 };
 
-document.body.onclick = (event) => {
-	console.log(event.target);
-};
+// document.body.onclick = (event) => {
+// 	console.log(event.target);
+// };

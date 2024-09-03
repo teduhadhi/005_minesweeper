@@ -1,3 +1,7 @@
+.opaque{
+  opacity: 0;
+}
+
 @keyframes zoom {
 	from {
 		transform: scale(100%);
