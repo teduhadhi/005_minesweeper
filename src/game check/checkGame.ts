@@ -1,8 +1,8 @@
-import mineSpreads from "../game layout/mineSpreads";
+import showTile from "../game layout/showTile";
 
 const checkGamge = (() => {
 	const timer = document.querySelector(".timer") as HTMLParagraphElement;
-
+	const gameOverCover = document.querySelector(".game-over") as HTMLDivElement;
 	let timerCounter: number = 0,
 		seconds: number = 0,
 		secondsString: string,
@@ -11,20 +11,27 @@ const checkGamge = (() => {
 		display: string,
 		startTimer: number;
 
-	const gameOver = (status: boolean, minesArray?: string[], targetId?: string) => {
-
+	const gameOver = (
+		status: boolean,
+		minesArray?: string[],
+		targetId?: string
+	) => {
 		clearInterval(startTimer);
 		if (status) {
 			alert(`congrats ${display}`);
 		} else if (minesArray && targetId) {
-			mineSpreads.showMine(minesArray, targetId);
+			showTile.showMine(minesArray, targetId);
+			// showTile.showMisplacedFlag()
+
 		}
+		gameOverCover.style.display = "grid";
 	};
 
 	const gameReset = () => {
 		clearInterval(startTimer);
 		timerCounter = 0;
 		timer.innerHTML = "00:00";
+		gameOverCover.style.display = "none";
 	};
 
 	const gameStart = () => {

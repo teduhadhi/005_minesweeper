@@ -40,7 +40,7 @@ window.onresize = () => frontAnimation(levelPageContainer);
 
 levelButtons.forEach(function (button, index) {
 	button.onclick = (): void => {
-		handleClickLevelButton(index);
+		index < 2? handleClickLevelButton(index) : alert("coming soon")
 	};
 });
 
@@ -83,10 +83,8 @@ gridContainer.onclick = (event: MouseEvent) => {
 	const target = event.target as HTMLDivElement;
 	const isFlagged = target.innerHTML == "🏴";
 	const isChecked = target.attributes["data-status"]?.value == "checked";
-	const isAMine = target.attributes["data-content"]?.value == "mine";
 	const isATile = target.classList.contains("grid-tile");
 	const isANumber = target.classList.contains("x");
-	
 
 	if (!gameStart) (gameStart = true), checkGamge.gameStart();
 
@@ -104,10 +102,6 @@ gridContainer.onclick = (event: MouseEvent) => {
 		}
 	}
 	flagCounter.innerHTML = flagNumber.toString();
-};
-
-export const handleGameOver = () => {
-	gameOver = true;
 };
 
 document.body.onclick = (event) => {

@@ -21,31 +21,7 @@ const mineSpreads = (() => {
 		return minesArray;
 	};
 
-	const showMine = (minesArray: string[], targetId: string) => {
-		for (const id of minesArray) {
-			const tile = document.getElementById(id) as HTMLDivElement;
-			const item: HTMLParagraphElement = document.createElement("p");
-      
-			item.innerHTML = "&#11044";
-			item.classList.add("mine");
-      tile.appendChild(item);
-
-			let timer: number = 0;
-			while (timer < 0.5) {
-				timer = Math.random();
-			}
-
-			if (id == targetId) {
-				item.style.animation = "fade 0.2s ease-in forwards";
-			}
-
-			setTimeout(() => {
-				item.style.animation = "fade 0.2s ease-in forwards";
-			}, timer * 1250);
-		}
-	};
-
-	return { mineSet, showMine };
+	return { mineSet};
 })();
 
 export default mineSpreads;

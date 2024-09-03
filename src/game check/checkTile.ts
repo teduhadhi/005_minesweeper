@@ -1,4 +1,3 @@
-import { handleGameOver } from "../../main";
 import checkGamge from "./checkGame";
 
 const checkTile = (() => {
@@ -32,7 +31,6 @@ const checkTile = (() => {
 				if (!gameOver) {
 					checkGamge.gameOver(false, minesArray, targetId);
 					(gameOver = true);
-					handleGameOver();
 				}
 				return;
 			}
