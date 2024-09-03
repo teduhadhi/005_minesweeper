@@ -1,3 +1,5 @@
+import mineSpreads from "../game layout/mineSpreads";
+
 const checkGamge = (() => {
 	const timer = document.querySelector(".timer") as HTMLParagraphElement;
 
@@ -8,7 +10,16 @@ const checkGamge = (() => {
 		minutesString: string,
 		display: string,
 		startTimer: number;
-	const gameOver = () => {};
+
+	const gameOver = (status: boolean, minesArray?: string[], targetId?: string) => {
+
+		clearInterval(startTimer);
+		if (status) {
+			alert(`congrats ${display}`);
+		} else if (minesArray && targetId) {
+			mineSpreads.showMine(minesArray, targetId);
+		}
+	};
 
 	const gameReset = () => {
 		clearInterval(startTimer);

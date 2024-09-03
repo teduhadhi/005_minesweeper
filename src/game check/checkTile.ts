@@ -1,3 +1,6 @@
+import { handleGameOver } from "../../main";
+import checkGamge from "./checkGame";
+
 const checkTile = (() => {
 	let gridRow: number,
 		gridCol: number,
@@ -10,6 +13,7 @@ const checkTile = (() => {
 		[gridRow, gridCol, mines] = configIndex;
 		minesArray = mineArray;
 		counter = 0;
+		gameOver = false;
 	};
 
 	const checkMine = (targetId: string): void => {
@@ -18,7 +22,6 @@ const checkTile = (() => {
 		) as HTMLDivElement;
 		const id: string[] = targetId.split("-");
 		const [row, col] = id.map((item) => Number(item));
-		gameOver = false
 
 		let mineCount: number = 0;
 
@@ -26,7 +29,11 @@ const checkTile = (() => {
 			selectedTile.setAttribute("data-status", "checked");
 
 			if (minesArray.includes(targetId)) {
-				if (!gameOver) alert("duar"), (gameOver = true);
+				if (!gameOver) {
+					checkGamge.gameOver(false, minesArray, targetId);
+					(gameOver = true);
+					handleGameOver();
+				}
 				return;
 			}
 
@@ -66,7 +73,7 @@ const checkTile = (() => {
 				}
 			}
 			if (counter == gridRow * gridCol - mines) {
-				if (!gameOver) alert("cleared"), (gameOver = true);
+				if (!gameOver) checkGamge.gameOver(true), (gameOver = true);
 			}
 		}
 	};

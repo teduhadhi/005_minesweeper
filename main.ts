@@ -32,6 +32,7 @@ let configIndex: number[] = [];
 let levelIndex: number;
 let flagNumber: number;
 let gameStart: boolean = false;
+let gameOver: boolean = false;
 let gridArray = gridContainer.children as HTMLCollection;
 
 frontAnimation(levelPageContainer);
@@ -63,7 +64,8 @@ const handleLevelSelect = (index: number) => {
 
 gameReset.onclick = () => {
 	handleLevelSelect(levelIndex);
-	if (gameStart) gameStart = false, checkGamge.gameReset();
+	if (gameStart)
+		(gameStart = false), (gameOver = false), checkGamge.gameReset();
 };
 
 flagButton.onclick = (event: MouseEvent) => {
@@ -81,12 +83,14 @@ gridContainer.onclick = (event: MouseEvent) => {
 	const target = event.target as HTMLDivElement;
 	const isFlagged = target.innerHTML == "🏴";
 	const isChecked = target.attributes["data-status"]?.value == "checked";
-	const isANumber = target.classList.contains("x");
+	const isAMine = target.attributes["data-content"]?.value == "mine";
 	const isATile = target.classList.contains("grid-tile");
+	const isANumber = target.classList.contains("x");
+	
 
-	if (!gameStart) gameStart = true, checkGamge.gameStart();
+	if (!gameStart) (gameStart = true), checkGamge.gameStart();
 
-	if (isATile) {
+	if (isATile && !gameOver) {
 		if (!flagStatus) {
 			if (isANumber) checkFlagged(target.id, configIndex);
 			if (!isFlagged) checkTile.checkMine(target.id);
@@ -102,7 +106,10 @@ gridContainer.onclick = (event: MouseEvent) => {
 	flagCounter.innerHTML = flagNumber.toString();
 };
 
+export const handleGameOver = () => {
+	gameOver = true;
+};
 
 document.body.onclick = (event) => {
-	console.log(event.target)
-}
+	console.log(event.target);
+};

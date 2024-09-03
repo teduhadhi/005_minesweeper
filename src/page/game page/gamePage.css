@@ -117,8 +117,8 @@
 	}
 }
 
-p {
-	z-index: -2;
+.mine {
+	opacity: 0;
 }
 
 .gray {
