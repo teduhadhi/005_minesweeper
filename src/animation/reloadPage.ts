@@ -37,7 +37,7 @@ const reloadPage = (() => {
 		}, (timeframe / 2) * 1000);
 
 		setTimeout(() => {
-			page.style.animation = `fade ${timeframe / 2}s ease-in forwards `;
+			page.style.animation = `fade ${timeframe / 2}s ease-out forwards `;
 			page.style.opacity = "";
 		}, (timeframe / 2) * 1000 + 50);
 

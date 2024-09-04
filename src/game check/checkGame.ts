@@ -3,7 +3,7 @@ import showTile from "../game layout/showTile";
 const checkGamge = (() => {
 	const timer = document.querySelector(".timer") as HTMLParagraphElement;
 	const gameOverCover = document.querySelector(".game-over") as HTMLDivElement;
-	const modalMessage = document.querySelector(".modal-message") as HTMLDivElement;
+	// const modalMessage = document.querySelector(".modal-message") as HTMLDivElement;
 
 	let timerCounter: number = 0,
 		seconds: number = 0,
@@ -27,7 +27,7 @@ const checkGamge = (() => {
 			showTile.showMisplacedFlag()
 		}
 		gameOverCover.style.display = "grid";
-		modalMessage.style.display ="grid"
+		// modalMessage.style.display ="grid"
 	};
 
 	const gameReset = () => {

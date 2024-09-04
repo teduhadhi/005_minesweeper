@@ -10,9 +10,9 @@ import reloadPage from "./src/animation/reloadPage";
 const LEVEL_CONFIG: number[][] = [
 	[9, 9, 10],
 	[9, 9, 15],
-	[16, 9, 40],
+	[16, 9, 30],
 ];
-const RESET_TIME_FRAME: number = 1;
+const RESET_TIMEFRAME: number = 0.75;
 
 const htmlBody = document.body as HTMLBodyElement;
 const gameBoard = document.querySelector(".container-board") as HTMLDivElement;
@@ -30,11 +30,11 @@ const backToHome = document.querySelector(".home") as HTMLButtonElement;
 const flagButton = document.querySelector(".button-flag") as HTMLButtonElement;
 const flagCounter = document.querySelector(".counter") as HTMLParagraphElement;
 
-let flagStatus: boolean = false;
-let minesArray: string[] = [];
-let configIndex: number[] = [];
 let levelIndex: number;
 let flagNumber: number;
+let minesArray: string[] = [];
+let configIndex: number[] = [];
+let flagStatus: boolean = false;
 let gameStart: boolean = false;
 let gameOver: boolean = false;
 let gridArray = gridContainer.children as HTMLCollection;
@@ -74,21 +74,21 @@ const handleReset = () => {
 	setTimeout(() => {
 		if (gameStart)
 			(gameStart = false), (gameOver = false), checkGamge.gameReset();
-	}, (RESET_TIME_FRAME / 2) * 1000);
+	}, (RESET_TIMEFRAME / 2) * 1000);
 };
 
 gameReset.onclick = () => {
-	reloadPage.fadePage(gameBoard, RESET_TIME_FRAME);
+	reloadPage.fadePage(gameBoard, RESET_TIMEFRAME);
 	setTimeout(() => {
 		handleLevelSelect(levelIndex);
-	}, (RESET_TIME_FRAME / 2) * 1000);
-
+	}, (RESET_TIMEFRAME / 2) * 1000);
 	handleReset();
 };
 
 backToHome.onclick = () => {
 	reloadPage.shrinkPage(htmlBody, 1);
 	switchPage.fade(gameBoard, levelPageContainer, 0.35);
+	handleReset();
 };
 
 flagButton.onclick = (event: MouseEvent) => {

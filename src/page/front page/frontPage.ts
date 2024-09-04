@@ -25,11 +25,11 @@ export const frontAnimation = (levelButtonsContainer: HTMLDivElement) => {
 	const frontTiles = frontPageTilesContainer.children;
 	frontPageContainer.onclick = () => {
 
-		switchPage.zoomToFade(frontPageContainer, levelButtonsContainer,1.20)
+		switchPage.zoomToFade(frontPageContainer, levelButtonsContainer,1)
 		for (const tile of frontTiles) {
 			setTimeout(() => {
 				tile.classList.add("opaque");
-			}, Math.random() * 1000);
+			}, Math.random() * 750);
 		}
 	};
 };
