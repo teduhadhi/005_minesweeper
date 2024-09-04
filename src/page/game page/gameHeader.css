@@ -1,0 +1,132 @@
+.header-board {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 70px;
+	margin-bottom: 0.75em;
+	anchor-name: --header-board;
+
+	.left-section {
+		display: flex;
+		justify-content: space-between;
+		gap: 13px;
+		width: 110px;
+		margin-left: 2px;
+		font-size: 1.5em;
+		font-weight: 100;
+
+		.home {
+			margin-left: 8px;
+			padding: 0 8px;
+			background-color: transparent;
+			border: none;
+			font-size: 50px;
+			color: gray;
+			cursor: pointer;
+			transition: all 0.15s ease;
+			&:hover {
+				color: black;
+			}
+		}
+
+		.container-reset-timer {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: 100px;
+
+			.reset {
+				background-color: transparent;
+				border: none;
+				font-size: 0.925em;
+				font-weight: 300;
+				color: gray;
+				cursor: pointer;
+				transition: all 0.15s ease;
+				&:hover {
+					color: black;
+				}
+			}
+		}
+		
+	}
+
+	.middle-section {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 200px;
+		height: 55px;
+		font-size: 1.25em;
+		font-weight: 300;
+
+		.message-top {
+			color: red;
+		}
+		.message-bottom {
+			color:blue;
+		}
+	}
+
+	.right-section {
+		display: flex;
+		justify-content: end;
+		align-items: center;
+		gap: 5px;
+		margin-left: 1px;
+		width: 110px;
+		.counter {
+			height: 100%;
+			font-size: 3em;
+			font-weight: 100;
+		}
+
+		.button-flag {
+			padding: 0.4em;
+			background-color: whitesmoke;
+			border: 2px solid lightgray;
+			border-radius: 5px;
+			font-size: 1.5em;
+			cursor: pointer;
+			transition: all 0.15s ease;
+		
+			&:hover {
+				border: 2px solid gray;
+			}
+		
+			&:active {
+				border-radius: 20px;
+			}
+		}
+	}
+}
+
+.header-cover {
+	position: absolute;
+	z-index: 3;
+	display: none;
+	position-anchor: --header-board;
+	left: anchor(left);
+	top: anchor(top);
+	width: anchor-size(width);
+	height: anchor-size(height);
+	background-color: transparent;
+}
+
+.more{
+	margin-right: 10px;
+	padding: 0 5px;
+	background-color: transparent;
+	border: none;
+	font-size: 50px;
+	color: gray;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	&:hover {
+		color: black;
+	}
+}
+

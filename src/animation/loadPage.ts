@@ -43,7 +43,7 @@ const reloadPage = (() => {
 
 		setTimeout(() => {
 			page.style.animation = "";
-		}, timeframe * 1000);
+		}, (timeframe) * 1000 + 75);
 	};
 	return { expandPage, shrinkPage, fadePage };
 })();

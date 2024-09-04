@@ -5,14 +5,14 @@ import { frontAnimation } from "./src/page/front page/frontPage";
 import { checkFlagged } from "./src/game check/checkFlagged";
 import switchPage from "./src/animation/switchPage";
 import checkGamge from "./src/game check/checkGame";
-import reloadPage from "./src/animation/reloadPage";
+import reloadPage from "./src/animation/loadPage";
 
 const LEVEL_CONFIG: number[][] = [
 	[9, 9, 10],
 	[9, 9, 15],
 	[16, 9, 30],
 ];
-const RESET_TIMEFRAME: number = 0.75;
+const RESET_TIMEFRAME: number = 0.65;
 
 const htmlBody = document.body as HTMLBodyElement;
 const gameBoard = document.querySelector(".container-board") as HTMLDivElement;
@@ -95,9 +95,11 @@ flagButton.onclick = (event: MouseEvent) => {
 	const target = event.target as HTMLDivElement;
 	if (flagStatus) {
 		target.classList.remove("gray");
+
 		flagStatus = false;
 	} else {
 		target.classList.add("gray");
+
 		flagStatus = true;
 	}
 };
@@ -131,6 +133,6 @@ gridContainer.onclick = (event: MouseEvent) => {
 	flagCounter.innerHTML = flagNumber.toString();
 };
 
-// document.body.onclick = (event) => {
-// 	console.log(event.target);
-// };
+document.body.onclick = (event) => {
+	console.log(event.target);
+};

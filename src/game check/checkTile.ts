@@ -51,6 +51,8 @@ const checkTile = (() => {
 					selectedTile.classList.add("x");
 				} else {
 					selectedTile.classList.add("gray");
+					
+
 					counter++;
 					for (let rowIndex = -1; rowIndex <= 1; rowIndex++) {
 						for (let colIndex = -1; colIndex <= 1; colIndex++) {

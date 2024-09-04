@@ -30,105 +30,11 @@
 	border-radius: 5px;
 	cursor: pointer;
 	transition: all 0.2s ease;
+
 	&:active {
 		box-shadow: inset 0px 0px 5px gray;
 		background-color: lightskyblue;
 	}
-}
-
-.header-board {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	margin-bottom: 0.75em;
-	anchor-name: --header-board;
-
-	.left-section {
-		display: flex;
-		justify-content: space-between;
-		gap: 10px;
-		width: 100px;
-		margin-left: 2px;
-		font-size: 1.5em;
-		font-weight: 100;
-
-		.container-reset-timer {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			width: 150px;
-			.reset {
-				background-color: transparent;
-				border: none;
-				font-size: 0.925em;
-				font-weight: 300;
-				color: gray;
-				cursor: pointer;
-				transition: all 0.15s ease;
-				&:hover {
-					color: black;
-				}
-			}
-		}
-
-		.home {
-			padding: 0 13px;
-			background-color: transparent;
-			border: none;
-			font-size: 50px;
-			color: gray;
-			cursor: pointer;
-			transition: all 0.15s ease;
-			&:hover {
-				color: black;
-			}
-		}
-	}
-
-	.right-section {
-		display: flex;
-		justify-content: end;
-		align-items: center;
-		margin-left: 1px;
-		gap: 5px;
-		.counter {
-			height: 100%;
-			font-size: 3em;
-			font-weight: 100;
-		}
-	}
-}
-
-.button-flag {
-	padding: 0.4em;
-	background-color: whitesmoke;
-	border: 2px solid lightgray;
-	border-radius: 5px;
-	font-size: 1.5em;
-	cursor: pointer;
-	transition: all 0.15s ease;
-
-	&:hover {
-		border: 2px solid gray;
-	}
-
-	&:active {
-		border-radius: 20px;
-	}
-}
-
-.header-cover {
-	position: absolute;
-	z-index: 3;
-	display: none;
-	position-anchor: --header-board;
-	left: anchor(left);
-	top: anchor(top);
-	width: anchor-size(width);
-	height: anchor-size(height);
-	background-color: transparent;
 }
 
 .game-over {
@@ -142,7 +48,7 @@
 	width: anchor-size(width);
 	height: anchor-size(height);
 	background-color: rgba(211, 211, 211, 0.199);
-/* 
+	/* 
 
 	.modal-message {
 
@@ -164,7 +70,12 @@
 
 .gray {
 	background-color: lightgray;
-	border-radius: none;
+	cursor: unset;
+
+	&:active {
+		box-shadow: none;
+		background-color: lightgray;
+	}
 }
 
 .exploded {

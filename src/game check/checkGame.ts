@@ -1,8 +1,25 @@
 import showTile from "../game layout/showTile";
 
 const checkGamge = (() => {
-	const timer = document.querySelector(".timer") as HTMLParagraphElement;
+	const winningMessage = [
+		"Superb!",
+		"Tremendeous!",
+		"Sensational!",
+		"Fantastic!",
+		"Neat!",
+		"Way to go!",
+		"Right on!",
+		"Terrific!",
+	];
+
 	const gameOverCover = document.querySelector(".game-over") as HTMLDivElement;
+	const timer = document.querySelector(".timer") as HTMLParagraphElement;
+	const headerTopMessage = document.querySelector(
+		".message-top"
+	) as HTMLParagraphElement;
+	const headerBottomMessage = document.querySelector(
+		".message-bottom"
+	) as HTMLParagraphElement;
 	// const modalMessage = document.querySelector(".modal-message") as HTMLDivElement;
 
 	let timerCounter: number = 0,
@@ -12,30 +29,6 @@ const checkGamge = (() => {
 		minutesString: string,
 		display: string,
 		startTimer: number;
-
-	const gameOver = (
-		status: boolean,
-		minesArray?: string[],
-		targetId?: string
-	) => {
-
-		clearInterval(startTimer);
-		if (status) {
-			alert(`congrats ${display}`);
-		} else if (minesArray && targetId) {
-			showTile.showMine(minesArray, targetId);
-			showTile.showMisplacedFlag()
-		}
-		gameOverCover.style.display = "grid";
-		// modalMessage.style.display ="grid"
-	};
-
-	const gameReset = () => {
-		clearInterval(startTimer);
-		timerCounter = 0;
-		timer.innerHTML = "00:00";
-		gameOverCover.style.display = "none";
-	};
 
 	const gameStart = () => {
 		startTimer = setInterval(() => {
@@ -59,6 +52,33 @@ const checkGamge = (() => {
 
 			timer.innerHTML = display;
 		};
+	};
+
+	const gamePause = {};
+
+	const gameOver = (
+		status: boolean,
+		minesArray?: string[],
+		targetId?: string
+	) => {
+		clearInterval(startTimer);
+		if (status) {
+			const messageIndex: number = Math.random() * winningMessage.length;
+			headerTopMessage.innerHTML = winningMessage[messageIndex];
+			headerBottomMessage.innerHTML = display;
+		} else if (minesArray && targetId) {
+			showTile.showMine(minesArray, targetId);
+			showTile.showMisplacedFlag();
+		}
+		gameOverCover.style.display = "grid";
+		// modalMessage.style.display ="grid"
+	};
+
+	const gameReset = () => {
+		clearInterval(startTimer);
+		// timerCounter = 0;
+		// timer.innerHTML = "00:00";
+		gameOverCover.style.display = "none";
 	};
 
 	return {
