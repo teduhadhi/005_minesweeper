@@ -18,8 +18,12 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		/>
-		<link rel="shortcut icon" href="\public\assets\icons8-grid-96.png" type="image/x-icon">
-		<title>MINESWEEPER - by teduhadhi</title>
+		<link
+			rel="shortcut icon"
+			href="\public\assets\icons8-grid-96.png"
+			type="image/x-icon"
+		/>
+		<title>M I N E S W E E P E R</title>
 	</head>
 	<body>
 		<div class="container-front-page">
@@ -42,6 +46,7 @@
 		</div>
 
 		<div class="container-board">
+			<div class="header-cover"></div>
 			<div class="header-board">
 				<div class="left-section">
 					<button class="home">&#10092;</button>
@@ -56,7 +61,18 @@
 				</div>
 			</div>
 			<div class="container-grid"></div>
-			<div class="game-over"></div>
+			<div class="game-over">
+				<div class="modal-message"></div>
+			</div>
+		</div>
+
+		<div class="container-link">
+			<a
+				class="linkedin"
+				href="https://www.linkedin.com/in/teduh-adhi-prakoso/"
+				target="_blank"
+				><i class="fa-brands fa-linkedin"></i> Linkedin</a
+			>
 		</div>
 
 		<script type="module" src="./main.ts"></script>

@@ -21,7 +21,7 @@ const checkTile = (() => {
 		) as HTMLDivElement;
 		const id: string[] = targetId.split("-");
 		const [row, col] = id.map((item) => Number(item));
-		const isFlagged = selectedTile.innerHTML.includes("🏴")
+		const isFlagged = selectedTile.innerHTML.includes("🏴");
 
 		let mineCount: number = 0;
 
@@ -31,7 +31,7 @@ const checkTile = (() => {
 			if (minesArray.includes(targetId)) {
 				if (!gameOver) {
 					checkGamge.gameOver(false, minesArray, targetId);
-					(gameOver = true);
+					gameOver = true;
 				}
 				return;
 			}

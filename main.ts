@@ -44,8 +44,8 @@ window.onresize = () => frontAnimation(levelPageContainer);
 levelButtons.forEach(function (button, index) {
 	button.onclick = (): void => {
 		handleClickLevelButton(index);
-		
-		if (index == 2) reloadPage.expandPage(htmlBody)
+
+		if (index == 2) reloadPage.expandPage(htmlBody, 1.25);
 	};
 });
 
@@ -71,13 +71,18 @@ const handleLevelSelect = (index: number) => {
 };
 
 gameReset.onclick = () => {
-	handleLevelSelect(levelIndex);
+	const timeframe: number = 1;
+	reloadPage.fadePage(gameBoard, timeframe);
+	setTimeout(() => {
+		handleLevelSelect(levelIndex);
+	}, (timeframe / 2) * 1000);
+
 	if (gameStart)
 		(gameStart = false), (gameOver = false), checkGamge.gameReset();
 };
 
 backToHome.onclick = () => {
-	reloadPage.compactPage(htmlBody)
+	reloadPage.shrinkPage(htmlBody, 1);
 	switchPage.fade(gameBoard, levelPageContainer, 0.35);
 	if (gameStart)
 		(gameStart = false), (gameOver = false), checkGamge.gameReset();
@@ -96,10 +101,11 @@ flagButton.onclick = (event: MouseEvent) => {
 
 gridContainer.onclick = (event: MouseEvent) => {
 	const target = event.target as HTMLDivElement;
-	const isFlagged = target.innerHTML.includes("🏴")
+	const isFlagged = target.innerHTML.includes("🏴");
 	const isChecked = target.attributes["data-status"]?.value == "checked";
 	const isATile = target.classList.contains("grid-tile");
 	const isANumber = target.classList.contains("x");
+	const isAMineExist = target.attributes["data-content"]?.value == "mine";
 
 	if (!gameStart) (gameStart = true), checkGamge.gameStart();
 
@@ -113,9 +119,12 @@ gridContainer.onclick = (event: MouseEvent) => {
 				!isFlagged
 					? ((target.innerHTML = "🏴"), flagNumber--)
 					: ((target.innerHTML = ""), flagNumber++);
+				if (!isAMineExist) {
+				}
 			}
 		}
 	}
+
 	flagCounter.innerHTML = flagNumber.toString();
 };
 

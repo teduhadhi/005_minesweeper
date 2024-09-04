@@ -47,8 +47,6 @@ export const checkFlagged = (targetId: string, configIndex: number[]): void => {
 	}
 
 	if (mineCounter == flagCounter && flagCounter >= 1) {
-		console.log("Minecounter = ", mineCounter, ", Flagcounter = ", flagCounter);
-
 		targetList.forEach((target) => {
 			checkTile.checkMine(target);
 		});

@@ -16,6 +16,25 @@ body {
 	overflow: hidden;
 }
 
+.container-link{
+	position: fixed;
+	z-index: 6;
+	bottom: 10px;
+	left: 15px;
+
+	.linkedin {
+		font-size: 1.5em;
+		text-decoration: none;
+		color: black;
+		opacity: 0.3;
+		transition: all 0.2s ease;
+
+		&:hover{
+			opacity: 0.5;
+		}
+	}
+}
+
 
 
 
