@@ -12,6 +12,7 @@ const LEVEL_CONFIG: number[][] = [
 	[9, 9, 15],
 	[16, 9, 40],
 ];
+const RESET_TIME_FRAME: number = 1;
 
 const htmlBody = document.body as HTMLBodyElement;
 const gameBoard = document.querySelector(".container-board") as HTMLDivElement;
@@ -51,7 +52,6 @@ levelButtons.forEach(function (button, index) {
 
 const handleClickLevelButton = (index: number) => {
 	switchPage.fade(levelPageContainer, gameBoard, 0.35);
-
 	handleLevelSelect(index);
 };
 
@@ -70,22 +70,25 @@ const handleLevelSelect = (index: number) => {
 	levelIndex = index;
 };
 
+const handleReset = () => {
+	setTimeout(() => {
+		if (gameStart)
+			(gameStart = false), (gameOver = false), checkGamge.gameReset();
+	}, (RESET_TIME_FRAME / 2) * 1000);
+};
+
 gameReset.onclick = () => {
-	const timeframe: number = 1;
-	reloadPage.fadePage(gameBoard, timeframe);
+	reloadPage.fadePage(gameBoard, RESET_TIME_FRAME);
 	setTimeout(() => {
 		handleLevelSelect(levelIndex);
-	}, (timeframe / 2) * 1000);
+	}, (RESET_TIME_FRAME / 2) * 1000);
 
-	if (gameStart)
-		(gameStart = false), (gameOver = false), checkGamge.gameReset();
+	handleReset();
 };
 
 backToHome.onclick = () => {
 	reloadPage.shrinkPage(htmlBody, 1);
 	switchPage.fade(gameBoard, levelPageContainer, 0.35);
-	if (gameStart)
-		(gameStart = false), (gameOver = false), checkGamge.gameReset();
 };
 
 flagButton.onclick = (event: MouseEvent) => {
