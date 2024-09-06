@@ -8,7 +8,7 @@ const checkTile = (() => {
 		counter: number,
 		gameOver: boolean = false;
 
-	const tileConfig = (configIndex: number[], mineArray: string[]) => {
+	const tileConfig = (configIndex: number[], mineArray: string[]): void => {
 		[gridRow, gridCol, mines] = configIndex;
 		minesArray = mineArray;
 		counter = 0;

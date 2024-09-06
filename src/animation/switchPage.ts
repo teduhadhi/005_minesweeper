@@ -3,7 +3,7 @@ const switchPage = (() => {
 		firstPage: HTMLDivElement,
 		secondPage: HTMLDivElement,
 		timeframe: number
-	) => {
+	): void => {
 		firstPage.style.animation = `zoom ${timeframe}s ease-in forwards, fade ${timeframe}s ease-in reverse `;
 
 		setTimeout(() => {
@@ -24,7 +24,7 @@ const switchPage = (() => {
 		firstPage: HTMLDivElement,
 		secondPage: HTMLDivElement,
 		timeframe: number
-	) => {
+	): void => {
 		firstPage.style.animation = `fade ${timeframe}s ease-in reverse `;
 
 		setTimeout(() => {

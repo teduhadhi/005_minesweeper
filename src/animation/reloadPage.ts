@@ -2,7 +2,7 @@ const reloadPage = (() => {
 	const headerCover = document.querySelector(".header-cover") as HTMLDivElement;
 	let pageExpand: boolean = false;
 
-	const expandPage = (page: HTMLBodyElement, timeframe: number) => {
+	const expandPage = (page: HTMLBodyElement, timeframe: number): void => {
 		pageExpand = true;
 		page.style.overflowY = "scroll";
 		page.style.animation = `expand ${timeframe}s ease forwards`;
@@ -15,7 +15,7 @@ const reloadPage = (() => {
 		}, timeframe * 1000);
 	};
 
-	const shrinkPage = (page: HTMLBodyElement, timeframe: number) => {
+	const shrinkPage = (page: HTMLBodyElement, timeframe: number): void => {
 		if (pageExpand) {
 			pageExpand = false;
 			page.style.animation = `expand ${timeframe}s ease-in-out reverse`;
@@ -28,7 +28,7 @@ const reloadPage = (() => {
 		}
 	};
 
-	const fadePage = (page: HTMLDivElement, timeframe: number) => {
+	const fadePage = (page: HTMLDivElement, timeframe: number): void => {
 		page.style.animation = `fade ${timeframe / 2}s ease-in reverse `;
 
 		setTimeout(() => {

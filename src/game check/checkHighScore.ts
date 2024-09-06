@@ -30,8 +30,9 @@ while (date.includes(".")) {
 	date = date.replace(".", "");
 }
 
-const checkHighScore = (() => {
-	const newHighScore = (mines: number, timer: string, index: number) => {
+let level: string;
+
+export const checkHighScore = (mines: number, timer: string, index: number): number => {
 		const newProfile: Profile = {
 			name: date,
 			timer: timer,
@@ -44,44 +45,33 @@ const checkHighScore = (() => {
 
 		switch (mines) {
 			case LEVEL_CONFIG[0][2]:
-				leaderboards.easy = [...leaderboards.easy, newProfile]
-					.sort((a: Profile, b: Profile) => {
-						return a.index - b.index;
-					})
-					.splice(0, 5);
-				leaderboards = { ...leaderboards, easy: leaderboards.easy };
-
+				level = "easy";
 				break;
 
 			case LEVEL_CONFIG[1][2]:
-				leaderboards.medium = [...leaderboards.medium, newProfile]
-					.sort((a: Profile, b: Profile) => {
-						return a.index - b.index;
-					})
-					.splice(0, 5);
-				leaderboards = { ...leaderboards, medium: leaderboards.medium };
-
+				level = "medium";
 				break;
 
 			case LEVEL_CONFIG[2][2]:
-				leaderboards.hard = [...leaderboards.hard, newProfile]
-					.sort((a: Profile, b: Profile) => {
-						return a.index - b.index;
-					})
-					.splice(0, 5);
-				leaderboards = { ...leaderboards, hard: leaderboards.hard };
-
+				level = "hard";
 				break;
 
 			default:
 				break;
 		}
+
+		leaderboards[level] = [...leaderboards[level], newProfile]
+			.sort((a: Profile, b: Profile) => {
+				return a.index - b.index;
+			})
+			.splice(0, 5);
+		leaderboards = { ...leaderboards, [level]: leaderboards[level] };
+
 		localStorage.setItem("leaderboards", JSON.stringify(leaderboards));
-	};
 
-	return {
-		newHighScore,
+		if(leaderboards[level].includes(newProfile)){
+			return leaderboards[level].indexOf(newProfile)
+		} else {
+			return 0
+		}
 	};
-})();
-
-export default checkHighScore;

@@ -1,5 +1,5 @@
 const showTile = (() => {
-	const showMine = (minesArray: string[], targetId: string) => {
+	const showMine = (minesArray: string[], targetId: string): void => {
 		for (const index in minesArray) {
 			const tile = document.getElementById(minesArray[index]) as HTMLDivElement;
 			const item: HTMLParagraphElement = document.createElement("p");
@@ -22,7 +22,7 @@ const showTile = (() => {
 		}
 	};
 
-	const showMisplacedFlag = () => {
+	const showMisplacedFlag = (): void => {
 		const misplacedFlagArray = document.querySelectorAll(
 			".misplaced"
 		) as NodeListOf<HTMLParagraphElement>;

@@ -1,6 +1,6 @@
 import switchPage from "../../animation/switchPage";
 
-export const frontAnimation = (levelButtonsContainer: HTMLDivElement) => {
+export const frontAnimation = (levelButtonsContainer: HTMLDivElement): void => {
 	const frontPageContainer = document.querySelector(".container-front-page") as HTMLDivElement;
 	
 	const frontPageTilesContainer = document.querySelector(
