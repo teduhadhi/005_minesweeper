@@ -51,7 +51,6 @@ const checkTile = (() => {
 					selectedTile.classList.add("x");
 				} else {
 					selectedTile.classList.add("gray");
-					
 
 					counter++;
 					for (let rowIndex = -1; rowIndex <= 1; rowIndex++) {
@@ -74,7 +73,7 @@ const checkTile = (() => {
 				}
 			}
 			if (counter == gridRow * gridCol - mines) {
-				if (!gameOver) checkGamge.gameOver(true), (gameOver = true);
+				if (!gameOver) checkGamge.gameOver(true, minesArray), (gameOver = true);
 			}
 		}
 	};

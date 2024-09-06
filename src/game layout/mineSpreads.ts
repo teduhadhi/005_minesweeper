@@ -4,9 +4,9 @@ const mineSpreads = (() => {
 		let minesArray: string[] = [];
 
 		while (mines > 0) {
-			let row: number = Math.floor(Math.random() * rows);
-			let col: number = Math.floor(Math.random() * cols);
-			let id: string = row.toString().concat("-", col.toString());
+			const row: number = Math.floor(Math.random() * rows);
+			const col: number = Math.floor(Math.random() * cols);
+			const id: string = row.toString().concat("-", col.toString());
 			if (!minesArray.includes(id)) {
 				minesArray.push(id);
 				mines--;

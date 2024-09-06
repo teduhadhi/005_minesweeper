@@ -6,13 +6,7 @@ import { checkFlagged } from "./src/game check/checkFlagged";
 import switchPage from "./src/animation/switchPage";
 import checkGamge from "./src/game check/checkGame";
 import reloadPage from "./src/animation/loadPage";
-
-const LEVEL_CONFIG: number[][] = [
-	[9, 9, 10],
-	[9, 9, 15],
-	[16, 9, 30],
-];
-const RESET_TIMEFRAME: number = 0.65;
+import { LEVEL_CONFIG, RESET_TIMEFRAME } from "./src/CONFIG/gameConfig";
 
 const htmlBody = document.body as HTMLBodyElement;
 const gameBoard = document.querySelector(".container-board") as HTMLDivElement;
@@ -25,8 +19,8 @@ const levelPageContainer = document.querySelector(
 const levelButtons = document.querySelectorAll(
 	".button-level"
 ) as NodeListOf<HTMLButtonElement>;
-const gameReset = document.querySelector(".reset") as HTMLButtonElement;
-const backToHome = document.querySelector(".home") as HTMLButtonElement;
+const resetButton = document.querySelector(".reset") as HTMLButtonElement;
+const homeButton = document.querySelector(".home") as HTMLButtonElement;
 const flagButton = document.querySelector(".button-flag") as HTMLButtonElement;
 const flagCounter = document.querySelector(".counter") as HTMLParagraphElement;
 
@@ -34,9 +28,9 @@ let levelIndex: number;
 let flagNumber: number;
 let minesArray: string[] = [];
 let configIndex: number[] = [];
-let flagStatus: boolean = false;
 let gameStart: boolean = false;
 let gameOver: boolean = false;
+let flagStatus: boolean = false;
 let gridArray = gridContainer.children as HTMLCollection;
 
 frontAnimation(levelPageContainer);
@@ -64,7 +58,7 @@ const handleLevelSelect = (index: number) => {
 	flagNumber = LEVEL_CONFIG[index][2];
 
 	flagCounter.innerHTML = flagNumber.toString();
-	flagButton.classList.remove("gray");
+	flagButton.style.backgroundColor = "white"
 	flagStatus = false;
 
 	levelIndex = index;
@@ -77,7 +71,7 @@ const handleReset = () => {
 	}, (RESET_TIMEFRAME / 2) * 1000);
 };
 
-gameReset.onclick = () => {
+resetButton.onclick = () => {
 	reloadPage.fadePage(gameBoard, RESET_TIMEFRAME);
 	setTimeout(() => {
 		handleLevelSelect(levelIndex);
@@ -85,7 +79,7 @@ gameReset.onclick = () => {
 	handleReset();
 };
 
-backToHome.onclick = () => {
+homeButton.onclick = () => {
 	reloadPage.shrinkPage(htmlBody, 1);
 	switchPage.fade(gameBoard, levelPageContainer, 0.35);
 	handleReset();
@@ -94,12 +88,10 @@ backToHome.onclick = () => {
 flagButton.onclick = (event: MouseEvent) => {
 	const target = event.target as HTMLDivElement;
 	if (flagStatus) {
-		target.classList.remove("gray");
-
+		target.style.backgroundColor = "white"
 		flagStatus = false;
 	} else {
-		target.classList.add("gray");
-
+		target.style.backgroundColor = "lightgray"
 		flagStatus = true;
 	}
 };
@@ -131,8 +123,4 @@ gridContainer.onclick = (event: MouseEvent) => {
 	}
 
 	flagCounter.innerHTML = flagNumber.toString();
-};
-
-document.body.onclick = (event) => {
-	console.log(event.target);
 };

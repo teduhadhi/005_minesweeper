@@ -2,29 +2,29 @@
 	display: none;
 	flex-direction: column;
 	align-items: center;
-  z-index: 4;
+	z-index: 4;
 	gap: 20px;
 }
 
 .container-level-page h2 {
 	font-size: 3em;
-  font-weight: 100;
+	font-weight: 100;
 	letter-spacing: 10px;
 }
 
 .button-level {
-  width: 150px;
-  margin: 10px;
+	width: 150px;
+	margin: 10px;
 	padding: 10px;
-  border: 1px solid lightgray;
+	border: 1px solid lightgray;
 	border-radius: 15px;
-  background-color: whitesmoke;
+	background-color: whitesmoke;
 
 	font-size: 1.25em;
-  font-weight: 300;
+	font-weight: 300;
 	letter-spacing: 7.5px;
-  color: gray;
-	
+	color: gray;
+
 	cursor: pointer;
 	transition: all 0.2s ease;
 	&:hover {
@@ -36,4 +36,27 @@
 	&:active {
 		opacity: 0.7;
 	}
+}
+
+.more {
+	position: absolute;
+	padding: 0 5px;
+	background-color: transparent;
+	border: none;
+
+	font-size: 50px;
+	color: gray;
+	opacity: 0.5;
+	cursor: pointer;
+	transition: all 0.15s ease;
+
+	&:hover {
+		transform: scale(110%);
+		opacity: 1;
+	}
+
+	&:active {
+		opacity: 0.7;
+	}
+
 }
