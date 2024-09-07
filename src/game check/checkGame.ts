@@ -21,10 +21,10 @@ const gameOverCover = document.querySelector(".game-over") as HTMLDivElement;
 const middleSection = document.querySelector(
 	".middle-section"
 ) as HTMLDivElement;
-const timer = document.querySelector(".timer") as HTMLParagraphElement;
-const resetButton = document.querySelector(".reset") as HTMLButtonElement;
+const timer = document.querySelector(".timer-game") as HTMLParagraphElement;
+const resetButton = document.querySelector(".reset-game") as HTMLButtonElement;
 const headerMessage = document.querySelector(
-	".message"
+	".message-game"
 ) as HTMLParagraphElement;
 
 
@@ -38,7 +38,7 @@ let timerCounter: number = 0,
 	startTimer: number,
 	newHighScore: number = 0;
 
-const checkGamge = (() => {
+const checkGame = (() => {
 	const gameStart = (): void => {
 		startTimer = setInterval(() => {
 			timerInterval();
@@ -91,7 +91,7 @@ const checkGamge = (() => {
 
 	const resetButtonGlow = () => {
 		resetButton.style.animation =
-			"fade-30 1s linear alternate-reverse infinite";
+			"fade-30 0.75s linear alternate-reverse infinite";
 
 		resetButton.onmouseover = () => {
 			resetButton.style.animation = "";
@@ -110,4 +110,4 @@ const checkGamge = (() => {
 	};
 })();
 
-export default checkGamge;
+export default checkGame;

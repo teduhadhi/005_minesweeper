@@ -17,7 +17,7 @@ export const frontAnimation = (levelButtonsContainer: HTMLDivElement): void => {
 
 	for (let row = 1; row <= rows; row++) {
 		for (let column = 1; column <= cols; column++) {
-			const frontGrid = document.createElement("div");
+			const frontGrid: HTMLDivElement = document.createElement("div");
 			frontGrid.classList.add("front-tiles");
 			frontPageTilesContainer.appendChild(frontGrid);
 		}

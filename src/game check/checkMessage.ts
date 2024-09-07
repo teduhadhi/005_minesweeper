@@ -33,9 +33,8 @@ export const gameOverMessages = (
 			Math.random() * winningMessage.length
 		);
 		headerMessageText = winningMessage[messageIndex];
-
 		if (newHighScore >= 0) {
-			headerMessageText = "new high score!";
+			headerMessageText = "New high score!";
 
 			const position = newHighScore + 1;
 
@@ -65,6 +64,7 @@ const messageLoad = (
 	placement: string,
 	headerMessage: HTMLParagraphElement
 ) => {
+  console.log(placement, headerMessageText)
 	setTimeout(() => {
 		headerMessage.innerHTML = headerMessageText;
 		headerMessage.style.animation = `fade ${

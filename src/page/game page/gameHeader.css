@@ -17,7 +17,7 @@
 		font-size: 1.5em;
 		font-weight: 100;
 
-		.home {
+		.home-game {
 			margin-left: 8px;
 			padding: 0 8px;
 			background-color: transparent;
@@ -38,7 +38,7 @@
 			align-items: center;
 			width: 100px;
 
-			.reset {
+			.reset-game {
 				background-color: transparent;
 				border: none;
 				font-size: 0.925em;
@@ -64,7 +64,7 @@
 		font-size: 1.25em;
 		font-weight: 300;
 
-		.message {
+		.message-game {
 			text-align: center;
 			letter-spacing: 0.2em;
 		}
@@ -78,13 +78,13 @@
 		margin-left: 1px;
 		width: 110px;
 
-		.counter {
+		.counter-game {
 			height: 100%;
 			font-size: 3em;
 			font-weight: 100;
 		}
 
-		.button-flag {
+		.button-flag-game {
 			padding: 0.4em;
 			background-color: whitesmoke;
 			border: 2px solid lightgray;

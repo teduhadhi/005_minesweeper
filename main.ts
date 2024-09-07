@@ -1,29 +1,49 @@
+import { LEVEL_CONFIG } from "./src/CONFIG/gameConfig";
+import { frontAnimation } from "./src/page/front page/frontPage";
+import { renderHighScore } from "./src/page/leaderboard page/leaderboardPage";
 import { gridLayout } from "./src/game layout/gridLayout";
 import { mineSpreads } from "./src/game layout/mineSpreads";
-import checkTile from "./src/game check/checkTile";
-import { frontAnimation } from "./src/page/front page/frontPage";
 import { checkFlagged } from "./src/game check/checkFlagged";
+import checkTile from "./src/game check/checkTile";
+import checkGame from "./src/game check/checkGame";
 import switchPage from "./src/animation/switchPage";
-import checkGamge from "./src/game check/checkGame";
 import reloadPage from "./src/animation/reloadPage";
-import { LEVEL_CONFIG } from "./src/CONFIG/gameConfig";
 
 
 const htmlBody = document.body as HTMLBodyElement;
-const gameBoard = document.querySelector(".container-board") as HTMLDivElement;
-const gridContainer = document.querySelector(
-	".container-grid"
-) as HTMLDivElement;
-const levelPageContainer = document.querySelector(
+const levelPage = document.querySelector(
 	".container-level-page"
 ) as HTMLDivElement;
 const levelButtons = document.querySelectorAll(
 	".button-level"
 ) as NodeListOf<HTMLButtonElement>;
-const resetButton = document.querySelector(".reset") as HTMLButtonElement;
-const homeButton = document.querySelector(".home") as HTMLButtonElement;
-const flagButton = document.querySelector(".button-flag") as HTMLButtonElement;
-const flagCounter = document.querySelector(".counter") as HTMLParagraphElement;
+const moreButtonLevel = document.querySelector(
+	".more-leaderboard"
+) as HTMLButtonElement;
+const leaderboardPage = document.querySelector(
+	".container-leaderboard-page"
+) as HTMLDivElement;
+const homeButtonLeaderboard = document.querySelector(
+	".home-leaderboard"
+) as HTMLButtonElement;
+const gamePage = document.querySelector(
+	".container-game-page"
+) as HTMLDivElement;
+const gridContainer = document.querySelector(
+	".container-grid"
+) as HTMLDivElement;
+const resetButtonGame = document.querySelector(
+	".reset-game"
+) as HTMLButtonElement;
+const homeButtonGame = document.querySelector(
+	".home-game"
+) as HTMLButtonElement;
+const flagButtonGame = document.querySelector(
+	".button-flag-game"
+) as HTMLButtonElement;
+const flagCounterGame = document.querySelector(
+	".counter-game"
+) as HTMLParagraphElement;
 
 const RESET_TIMEFRAME: number = 0.65;
 let levelIndex: number;
@@ -36,8 +56,8 @@ let gameReset: boolean = false;
 let flagStatus: boolean = false;
 let gridArray = gridContainer.children as HTMLCollection;
 
-frontAnimation(levelPageContainer);
-window.onresize = () => frontAnimation(levelPageContainer);
+frontAnimation(levelPage);
+window.onresize = () => frontAnimation(levelPage);
 
 levelButtons.forEach(function (button, index) {
 	button.onclick = (): void => {
@@ -48,7 +68,7 @@ levelButtons.forEach(function (button, index) {
 });
 
 const handleClickLevelButton = (index: number): void => {
-	switchPage.fade(levelPageContainer, gameBoard, 0.35);
+	switchPage.fade(levelPage, gamePage, 0.35);
 	handleLevelSelect(index);
 };
 
@@ -60,35 +80,45 @@ const handleLevelSelect = (index: number): void => {
 	configIndex = LEVEL_CONFIG[index];
 	flagNumber = LEVEL_CONFIG[index][2];
 
-	flagCounter.innerHTML = flagNumber.toString();
-	flagButton.style.backgroundColor = "white";
+	flagCounterGame.innerHTML = flagNumber.toString();
+	flagButtonGame.style.backgroundColor = "white";
 	flagStatus = false;
 
 	levelIndex = index;
 };
 
-const handleReset = (): void => {
-	setTimeout(() => {
-		if (gameStart)
-			(gameStart = false), (gameOver = false), checkGamge.gameReset();
-	}, (RESET_TIMEFRAME / 2) * 1000);
+moreButtonLevel.onclick = () => {
+	switchPage.fade(levelPage, leaderboardPage, 0.35);
+	renderHighScore(1);
 };
 
-resetButton.onclick = (): void => {
-	reloadPage.fadePage(gameBoard, RESET_TIMEFRAME);
+homeButtonLeaderboard.onclick = () => {
+	switchPage.fade(leaderboardPage, levelPage, 0.35);
+	
+};
+
+resetButtonGame.onclick = (): void => {
+	reloadPage.fadePage(gamePage, RESET_TIMEFRAME);
 	setTimeout(() => {
 		handleLevelSelect(levelIndex);
 	}, (RESET_TIMEFRAME / 2) * 1000);
 	handleReset();
 };
 
-homeButton.onclick = (): void => {
+homeButtonGame.onclick = (): void => {
 	reloadPage.shrinkPage(htmlBody, 1);
-	switchPage.fade(gameBoard, levelPageContainer, 0.35);
+	switchPage.fade(gamePage, levelPage, 0.35);
 	handleReset();
 };
 
-flagButton.onclick = (event: MouseEvent): void => {
+const handleReset = (): void => {
+	setTimeout(() => {
+		if (gameStart)
+			(gameStart = false), (gameOver = false), checkGame.gameReset();
+	}, (RESET_TIMEFRAME / 2) * 1000);
+};
+
+flagButtonGame.onclick = (event: MouseEvent): void => {
 	const target = event.target as HTMLDivElement;
 	if (flagStatus) {
 		target.style.backgroundColor = "white";
@@ -107,7 +137,7 @@ gridContainer.onclick = (event: MouseEvent): void => {
 	const isANumber = target.classList.contains("x");
 	const isAMineExist = target.attributes["data-content"]?.value == "mine";
 
-	if (!gameStart) (gameStart = true), checkGamge.gameStart();
+	if (!gameStart) (gameStart = true), checkGame.gameStart();
 
 	if (isATile && !gameOver) {
 		if (!flagStatus) {
@@ -125,5 +155,6 @@ gridContainer.onclick = (event: MouseEvent): void => {
 		}
 	}
 
-	flagCounter.innerHTML = flagNumber.toString();
+	flagCounterGame.innerHTML = flagNumber.toString();
 };
+

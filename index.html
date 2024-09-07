@@ -9,8 +9,12 @@
 			rel="stylesheet"
 			href="src/page/level selection page/levelSelection.css"
 		/>
+		<link
+			rel="stylesheet"
+			href="./src/page/leaderboard page/leaderboardPage.css"
+		/>
 		<link rel="stylesheet" href="src/page/game page/gamePage.css" />
-		<link rel="stylesheet" href="src/page/game page/gameHeader.css">
+		<link rel="stylesheet" href="src/page/game page/gameHeader.css" />
 		<link rel="stylesheet" href="src/animation/animation.css" />
 		<link
 			rel="stylesheet"
@@ -39,35 +43,53 @@
 			<h2>Select The Difficulty</h2>
 			<div class="container-levels">
 				<div class="level-selector">
-					<button class="button-level" id="button1">Easy</button>
-					<button class="button-level" id="button2">Medium</button>
-					<button class="button-level" id="button3">Hard</button>
-					<button class="more">&#8942;</button>
+					<button class="button-level">Easy</button>
+					<button class="button-level">Medium</button>
+					<button class="button-level">Hard</button>
+					<button class="more-leaderboard">&#8942;</button>
 				</div>
-				
 			</div>
 		</div>
 
-		<div class="container-board">
+		<div class="container-game-page">
 			<div class="header-cover"></div>
 			<div class="header-board">
 				<div class="left-section">
-					<button class="home">&#10092;</button>
+					<button class="home-game">&#10092;</button>
 					<div class="container-reset-timer">
-						<button class="reset">Reset</button>
-						<p class="timer">00:00</p>
+						<button class="reset-game">Reset</button>
+						<p class="timer-game">00:00</p>
 					</div>
 				</div>
 				<div class="middle-section">
-					<p class="message"></p>
+					<p class="message-game"></p>
 				</div>
 				<div class="right-section">
-					<p class="counter">flag counter</p>
-					<button class="button-flag" id="button4">🏴</button>
+					<p class="counter-game">flag counter</p>
+					<button class="button-flag-game" id="button4">🏴</button>
 				</div>
 			</div>
 			<div class="container-grid"></div>
-			<div class="game-over">
+			<div class="game-over"></div>
+		</div>
+
+		<div class="container-leaderboard-page">
+			<div class="container-leaderboard-header">
+				<button class="home-leaderboard">&#10092;</button>
+				<div class="container-leaderboard-level">
+					<button class="left-leaderboard">&#9667;</button>
+					<ul class="leaderboard-level">
+						<li class="easy-leaderboard">Easy</li>
+						<li class="medium-leaderboard">Medium</li>
+						<li class="hard-leaderboard">Hard</li>
+					</ul>
+					<button class="right-leaderboard">&#9657;</button>
+				</div>
+			</div>
+
+			<div class="container-high-scores">
+				<table class="high-scores-list"> 
+				</table>
 			</div>
 		</div>
 
