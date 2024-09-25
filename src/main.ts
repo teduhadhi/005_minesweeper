@@ -1,13 +1,13 @@
-import { LEVEL_CONFIG } from "./src/CONFIG/gameConfig";
-import { frontAnimation } from "./src/page/front page/frontPage";
-import { renderHighScore } from "./src/page/leaderboard page/leaderboardPage";
-import { gridLayout } from "./src/game layout/gridLayout";
-import { mineSpreads } from "./src/game layout/mineSpreads";
-import { checkFlagged } from "./src/game check/checkFlagged";
-import checkTile from "./src/game check/checkTile";
-import checkGame from "./src/game check/checkGame";
-import switchPage from "./src/animation/switchPage";
-import reloadPage from "./src/animation/reloadPage";
+import { LEVEL_CONFIG } from "./CONFIG/gameConfig";
+import { frontAnimation } from "./page/front page/frontPage";
+import { renderHighScore } from "./page/leaderboard page/leaderboardPage";
+import { gridLayout } from "./game layout/gridLayout";
+import { mineSpreads } from "./game layout/mineSpreads";
+import { checkFlagged } from "./game check/checkFlagged";
+import checkTile from "./game check/checkTile";
+import checkGame from "./game check/checkGame";
+import switchPage from "./animation/switchPage";
+import reloadPage from "./animation/reloadPage";
 
 
 const htmlBody = document.body as HTMLBodyElement;
