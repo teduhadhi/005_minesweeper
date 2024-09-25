@@ -5,3 +5,23 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.container-leaderboard-header{
+  display: flex;
+
+  .home-leaderboard{
+    position: absolute;
+  }
+}
+
+.container-leaderboard-level{
+  display: flex;
+  margin: 0 20px;
+  gap: 20px;
+
+  .leaderboard-level{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+}

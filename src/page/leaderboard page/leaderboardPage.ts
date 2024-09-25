@@ -23,9 +23,9 @@ const rightLeaderboard = document.querySelector(
 let levelIndex: number = 1;
 let level: string;
 
-export const renderHighScore = (levelIndex: number) => {
+export const renderHighScore = (levelInput: number) => {
 	highScoresList.innerHTML = "";
-
+  levelIndex = levelInput
 	switch (levelIndex) {
 		case 1:
 			level = LEVEL_NAME[0];

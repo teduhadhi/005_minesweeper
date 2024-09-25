@@ -17,19 +17,7 @@
 		font-size: 1.5em;
 		font-weight: 100;
 
-		.home-game {
-			margin-left: 8px;
-			padding: 0 8px;
-			background-color: transparent;
-			border: none;
-			font-size: 50px;
-			color: inherit;
-			cursor: pointer;
-			transition: all 0.15s ease;
-			&:hover {
-				color: black;
-			}
-		}
+		
 
 		.container-reset-timer {
 			display: flex;
@@ -114,4 +102,16 @@
 	width: anchor-size(width);
 	height: anchor-size(height);
 	background-color: transparent;
+}
+
+.home-button, .navigation {
+	background-color: transparent;
+	border: none;
+	font-size: 50px;
+	color: gray;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	&:hover {
+		color: black;
+	}
 }
